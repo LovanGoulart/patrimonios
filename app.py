@@ -89,14 +89,19 @@ def login_required(view):
 
 @app.route('/')
 def index():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
+    # A raiz do PWA é sempre a tela inicial de autenticação.
+    # O sistema autenticado fica em /sistema.
+    return redirect(url_for('login'))
+
+@app.route('/sistema')
+@login_required
+def sistema():
     return render_template('base_original.html', usuario=session.get('user_name', 'Usuário'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'user_id' in session:
-        return redirect(url_for('index'))
+        return redirect(url_for('sistema'))
     error = None
     if request.method == 'POST':
         email = request.form.get('email', '').strip().lower()
@@ -109,13 +114,13 @@ def login():
             session['user_id'] = usuario.id
             session['user_name'] = usuario.nome
             session['user_email'] = usuario.email
-            return redirect(url_for('index'))
+            return redirect(url_for('sistema'))
     return render_template('auth.html', mode='login', error=error)
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     if 'user_id' in session:
-        return redirect(url_for('index'))
+        return redirect(url_for('sistema'))
     error = None
     values = {}
     if request.method == 'POST':
@@ -142,7 +147,7 @@ def cadastro():
             session['user_id'] = usuario.id
             session['user_name'] = usuario.nome
             session['user_email'] = usuario.email
-            return redirect(url_for('index'))
+            return redirect(url_for('sistema'))
     return render_template('auth.html', mode='cadastro', error=error, values=values)
 
 @app.post('/logout')
