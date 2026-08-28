@@ -235,20 +235,5 @@ def export_csv():
     for e in Equipamento.query.order_by(Equipamento.id).all():w.writerow([e.barcode,e.nome,e.marca,e.modelo,e.categoria,e.local,e.responsavel,e.status,e.data_aquisicao,e.valor])
     return app.response_class('\ufeff'+out.getvalue(),mimetype='text/csv',headers={'Content-Disposition':'attachment; filename=patrimonio_equipamentos.csv'})
 
-with app.app_context():
-    db.create_all()
-    if Equipamento.query.count() == 0:
-        import json
-        now=datetime.utcnow()
-        demo=[
-            Equipamento(barcode='PAT-2026-001',nome='Notebook Dell Latitude 5420',marca='Dell',modelo='Latitude 5420',serie='SN-DELL-001',categoria='Informática',local='TI - 3º Andar',responsavel='João Silva',data_aquisicao='2023-03-15',valor='4500,00',observacoes='Equipamento principal do setor de TI',status='ativo',data_cadastro=now),
-            Equipamento(barcode='PAT-2026-002',nome='Impressora HP LaserJet Pro',marca='HP',modelo='M404dn',serie='SN-HP-002',categoria='Equipamentos de Escritório',local='Recepção',responsavel='Maria Oliveira',data_aquisicao='2023-06-20',valor='1800,00',status='ativo',data_cadastro=now),
-            Equipamento(barcode='PAT-2026-003',nome='Monitor LG 27',marca='LG',modelo='27WN600-W',serie='SN-LG-003',categoria='Informática',local='Design',responsavel='Ana Costa',data_aquisicao='2023-09-10',valor='2200,00',status='manutencao',data_cadastro=now),
-            Equipamento(barcode='PAT-2026-004',nome='Mesa de Escritório Executiva',marca='Tok&Stok',modelo='Executiva Premium',serie='SN-TK-004',categoria='Móveis',local='Diretoria',responsavel='Carlos Mendes',data_aquisicao='2022-11-05',valor='3200,00',status='baixado',data_cadastro=now,baixa_json=json.dumps({'motivo':'Obsolescência','data':'2026-02-01','responsavel':'Carlos Mendes','observacoes':''},ensure_ascii=False))]
-        db.session.add_all(demo); db.session.flush()
-        db.session.add_all([Historico(equipamento_id=demo[0].id,acao='cadastro',detalhes=json.dumps({'nome':demo[0].nome,'barcode':demo[0].barcode},ensure_ascii=False)), Historico(equipamento_id=demo[2].id,acao='manutencao',detalhes=json.dumps({'tipo':'corretiva','tecnico':'Lucas Reparos'},ensure_ascii=False)), Historico(equipamento_id=demo[3].id,acao='baixa',detalhes=json.dumps({'motivo':'Obsolescência','responsavel':'Carlos Mendes'},ensure_ascii=False))])
-        db.session.add(Manutencao(equipamento_id=demo[2].id,tipo='corretiva',data='2026-02-20',tecnico='Lucas Reparos',descricao='Troca de painel e teste geral',custo='800,00'))
-        db.session.commit()
-
 if __name__=='__main__':
     app.run(host='0.0.0.0',port=int(os.getenv('PORT',5000)),debug=True)
