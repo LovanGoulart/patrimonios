@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/static/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
     <title>Patrimônio Pro - Gestão de Equipamentos</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,6 +53,7 @@
         .logo-text { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
         .logo-text span { font-weight: 300; opacity: 0.8; }
         .header-actions { display: flex; gap: 8px; }
+        .header-user { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; opacity:.9; padding:0 4px; }
         .header-btn {
             background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
             color: white; padding: 8px 14px; border-radius: var(--radius-sm);
@@ -380,12 +388,19 @@
                 <div class="logo-text">Patrimônio <span>Pro</span></div>
             </div>
             <div class="header-actions">
+                <span class="header-user" title="Usuário conectado"><i class="fas fa-user-circle"></i> {{ usuario }}</span>
+                <button class="header-btn" id="install-app" onclick="installPWA()" style="display:none">
+                    <i class="fas fa-mobile-screen-button"></i> Instalar
+                </button>
                 <button class="header-btn" onclick="exportData()">
                     <i class="fas fa-download"></i> Exportar
                 </button>
                 <button class="header-btn primary" onclick="openScanner()">
                     <i class="fas fa-plus"></i> Novo Scan
                 </button>
+                <form method="post" action="/logout" style="display:inline">
+                    <button class="header-btn" type="submit" title="Sair"><i class="fas fa-right-from-bracket"></i> Sair</button>
+                </form>
             </div>
         </div>
         <nav class="nav-tabs">
@@ -795,6 +810,13 @@
     <div class="toast-container" id="toast-container"></div>
 
     <script src="/static/js/app.js"></script>
+    <script>
+let deferredInstallPrompt=null;
+if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("/service-worker.js").catch(()=>{}));
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;const b=document.getElementById("install-app");if(b)b.style.display="inline-flex"});
+async function installPWA(){if(!deferredInstallPrompt)return;deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;const b=document.getElementById("install-app");if(b)b.style.display="none"}
+window.addEventListener("appinstalled",()=>{const b=document.getElementById("install-app");if(b)b.style.display="none"});
+</script>
 
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/static/icons/icon-192.png">
+<title>{{ 'Entrar' if mode == 'login' else 'Criar conta' }} — Patrimônio Pro</title>
+<style>
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--bg:#f1f5f9;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--danger:#dc2626}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#eff6ff,#f8fafc);color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px}.auth{width:100%;max-width:420px}.brand{text-align:center;margin-bottom:22px}.logo{width:64px;height:64px;margin:auto;background:linear-gradient(135deg,var(--primary),#06b6d4);border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;box-shadow:0 12px 30px #2563eb33}.brand h1{font-size:24px;margin:12px 0 4px}.brand p{margin:0;color:var(--muted);font-size:13px}.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 20px 50px #0f172a14}.card h2{margin:0 0 6px;font-size:20px}.subtitle{color:var(--muted);font-size:13px;margin:0 0 22px}.field{margin-bottom:16px}.field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px;color:#475569}.field input{width:100%;padding:13px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none}.field input:focus{border-color:var(--primary);box-shadow:0 0 0 4px #dbeafe}.btn{width:100%;border:0;border-radius:10px;padding:14px;background:var(--primary);color:#fff;font-weight:800;font-size:15px;cursor:pointer}.btn:hover{background:var(--primary-dark)}.error{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:10px;padding:11px 12px;font-size:13px;margin-bottom:16px}.link{text-align:center;margin-top:18px;font-size:13px;color:var(--muted)}.link a{color:var(--primary);font-weight:800;text-decoration:none}.install{display:none;margin:14px auto 0;border:1px solid var(--border);background:#fff;color:#475569;border-radius:10px;padding:9px 14px;font-weight:700;cursor:pointer}
+@media(max-width:480px){body{padding:14px}.card{padding:22px}.brand{margin-bottom:16px}}
+</style>
+</head>
+<body>
+<div class="auth">
+  <div class="brand"><div class="logo">📦</div><h1>Patrimônio <span style="font-weight:300">Pro</span></h1><p>Gestão de equipamentos e patrimônio</p></div>
+  <div class="card">
+    <h2>{{ 'Entrar no sistema' if mode == 'login' else 'Criar sua conta' }}</h2>
+    <p class="subtitle">{{ 'Acesse seu painel de patrimônio.' if mode == 'login' else 'Cadastre-se para começar a usar o sistema.' }}</p>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form method="post" autocomplete="on">
+      {% if mode == 'cadastro' %}
+      <div class="field"><label>Nome</label><input name="nome" type="text" value="{{ values.nome|default('') }}" required autocomplete="name" placeholder="Seu nome"></div>
+      {% endif %}
+      <div class="field"><label>E-mail</label><input name="email" type="email" value="{{ values.email|default('') }}" required autocomplete="email" placeholder="voce@exemplo.com"></div>
+      <div class="field"><label>Senha</label><input name="senha" type="password" required autocomplete="{{ 'new-password' if mode == 'cadastro' else 'current-password' }}" placeholder="Mínimo de 6 caracteres"></div>
+      {% if mode == 'cadastro' %}<div class="field"><label>Confirmar senha</label><input name="confirmar_senha" type="password" required autocomplete="new-password" placeholder="Digite a senha novamente"></div>{% endif %}
+      <button class="btn" type="submit">{{ 'Entrar' if mode == 'login' else 'Criar conta' }}</button>
+    </form>
+    <div class="link">{% if mode == 'login' %}Ainda não tem conta? <a href="/cadastro">Criar conta</a>{% else %}Já possui conta? <a href="/login">Entrar</a>{% endif %}</div>
+  </div>
+  <button id="installBtn" class="install">📲 Instalar Patrimônio Pro</button>
+</div>
+<script>
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));
+let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block'});document.getElementById('installBtn').onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('installBtn').style.display='none'};
+</script>
+</body></html>

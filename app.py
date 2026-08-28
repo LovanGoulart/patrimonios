@@ -1,14 +1,28 @@
-from flask import Flask, jsonify, request, render_template, send_from_directory
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from pathlib import Path
 from datetime import datetime
 import os
+from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
 
 BASE = Path(__file__).resolve().parent
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{BASE / 'patrimonio.db'}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.environ.get('PATRIMONIO_SECRET_KEY', 'patrimonio-pro-chave-trocar-em-producao')
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SECURE'] = os.environ.get('FLASK_ENV') == 'production'
 db = SQLAlchemy(app)
+
+class Usuario(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(180), unique=True, nullable=False, index=True)
+    senha_hash = db.Column(db.String(255), nullable=False)
+    ativo = db.Column(db.Boolean, default=True, nullable=False)
+    data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)
 
 class Equipamento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -63,16 +77,96 @@ def hist_json(h):
     except Exception: detalhes={}
     return dict(id=h.id, equipamentoId=h.equipamento_id, acao=h.acao, detalhes=detalhes, data=h.data.isoformat() if h.data else '')
 
+def login_required(view):
+    @wraps(view)
+    def wrapped(*args, **kwargs):
+        if 'user_id' not in session:
+            if request.path.startswith('/api/'):
+                return jsonify(error='Não autenticado.', redirect=url_for('login')), 401
+            return redirect(url_for('login'))
+        return view(*args, **kwargs)
+    return wrapped
+
 @app.route('/')
-def index(): return render_template('base_original.html')
+def index():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    return render_template('base_original.html', usuario=session.get('user_name', 'Usuário'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if 'user_id' in session:
+        return redirect(url_for('index'))
+    error = None
+    if request.method == 'POST':
+        email = request.form.get('email', '').strip().lower()
+        senha = request.form.get('senha', '')
+        usuario = Usuario.query.filter_by(email=email).first()
+        if not usuario or not usuario.ativo or not check_password_hash(usuario.senha_hash, senha):
+            error = 'E-mail ou senha inválidos.'
+        else:
+            session.clear()
+            session['user_id'] = usuario.id
+            session['user_name'] = usuario.nome
+            session['user_email'] = usuario.email
+            return redirect(url_for('index'))
+    return render_template('auth.html', mode='login', error=error)
+
+@app.route('/cadastro', methods=['GET', 'POST'])
+def cadastro():
+    if 'user_id' in session:
+        return redirect(url_for('index'))
+    error = None
+    values = {}
+    if request.method == 'POST':
+        nome = request.form.get('nome', '').strip()
+        email = request.form.get('email', '').strip().lower()
+        senha = request.form.get('senha', '')
+        confirmar = request.form.get('confirmar_senha', '')
+        values = {'nome': nome, 'email': email}
+        if len(nome) < 2:
+            error = 'Informe seu nome.'
+        elif '@' not in email or len(email) < 5:
+            error = 'Informe um e-mail válido.'
+        elif len(senha) < 6:
+            error = 'A senha deve ter pelo menos 6 caracteres.'
+        elif senha != confirmar:
+            error = 'As senhas não conferem.'
+        elif Usuario.query.filter_by(email=email).first():
+            error = 'Este e-mail já está cadastrado.'
+        else:
+            usuario = Usuario(nome=nome, email=email, senha_hash=generate_password_hash(senha))
+            db.session.add(usuario)
+            db.session.commit()
+            session.clear()
+            session['user_id'] = usuario.id
+            session['user_name'] = usuario.nome
+            session['user_email'] = usuario.email
+            return redirect(url_for('index'))
+    return render_template('auth.html', mode='cadastro', error=error, values=values)
+
+@app.post('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
+@app.get('/manifest.webmanifest')
+def manifest():
+    return send_from_directory(app.static_folder, 'manifest.webmanifest')
+
+@app.get('/service-worker.js')
+def service_worker():
+    return send_from_directory(app.static_folder, 'service-worker.js', mimetype='application/javascript')
 
 @app.get('/api/bootstrap')
+@login_required
 def bootstrap():
     return jsonify(equipamentos=[eq_json(e) for e in Equipamento.query.order_by(Equipamento.id.desc()).all()],
                    manutencoes=[maint_json(m) for m in Manutencao.query.order_by(Manutencao.id.desc()).all()],
                    historico=[hist_json(h) for h in Historico.query.order_by(Historico.id.desc()).limit(100).all()])
 
 @app.post('/api/equipamentos')
+@login_required
 def create_eq():
     import json
     d=request.get_json() or {}
@@ -84,6 +178,7 @@ def create_eq():
     return jsonify(eq_json(e)),201
 
 @app.put('/api/equipamentos/<int:eid>')
+@login_required
 def update_eq(eid):
     e=db.session.get(Equipamento,eid)
     if not e:return jsonify(error='Equipamento não encontrado.'),404
@@ -93,6 +188,7 @@ def update_eq(eid):
     db.session.commit(); return jsonify(eq_json(e))
 
 @app.post('/api/equipamentos/<int:eid>/manutencoes')
+@login_required
 def create_maint(eid):
     import json
     e=db.session.get(Equipamento,eid)
@@ -103,6 +199,7 @@ def create_maint(eid):
     e.status='manutencao'; db.session.add(m); db.session.flush(); db.session.add(Historico(equipamento_id=eid,acao='manutencao',detalhes=json.dumps({'tipo':m.tipo,'tecnico':m.tecnico},ensure_ascii=False))); db.session.commit(); return jsonify(maint_json(m)),201
 
 @app.post('/api/equipamentos/<int:eid>/baixa')
+@login_required
 def baixa(eid):
     import json
     e=db.session.get(Equipamento,eid)
@@ -113,17 +210,20 @@ def baixa(eid):
     db.session.add(Historico(equipamento_id=eid,acao='baixa',detalhes=json.dumps({'motivo':d['motivo'],'responsavel':d['responsavel'].strip()},ensure_ascii=False))); db.session.commit(); return jsonify(eq_json(e))
 
 @app.delete('/api/equipamentos/<int:eid>')
+@login_required
 def delete_eq(eid):
     e=db.session.get(Equipamento,eid)
     if not e:return jsonify(error='Não encontrado.'),404
     Manutencao.query.filter_by(equipamento_id=eid).delete(); Historico.query.filter_by(equipamento_id=eid).delete(); db.session.delete(e); db.session.commit(); return jsonify(ok=True)
 
 @app.get('/api/equipamentos/<int:eid>')
+@login_required
 def get_eq(eid):
     e=db.session.get(Equipamento,eid)
     return (jsonify(equipamento=eq_json(e),manutencoes=[maint_json(m) for m in Manutencao.query.filter_by(equipamento_id=eid).all()],historico=[hist_json(h) for h in Historico.query.filter_by(equipamento_id=eid).order_by(Historico.id.desc()).all()]) if e else (jsonify(error='Não encontrado.'),404))
 
 @app.get('/api/export')
+@login_required
 def export_csv():
     import csv, io
     out=io.StringIO(); w=csv.writer(out); w.writerow(['Código','Nome','Marca','Modelo','Categoria','Local','Responsável','Status','Data Aquisição','Valor'])

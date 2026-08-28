@@ -1,6 +1,6 @@
 const state={equipamentos:[],manutencoes:[],historico:[],filter:'todos',current:null,scanner:null};
 const $=id=>document.getElementById(id);
-async function api(url,opt={}){const r=await fetch(url,{headers:{'Content-Type':'application/json'},...opt});const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Erro no servidor');return d}
+async function api(url,opt={}){const r=await fetch(url,{headers:{'Content-Type':'application/json'},...opt});const d=await r.json().catch(()=>({}));if(r.status===401){window.location='/login';throw Error('Sessão expirada.')}if(!r.ok)throw Error(d.error||'Erro no servidor');return d}
 function sync(d){state.equipamentos=d.equipamentos;state.manutencoes=d.manutencoes;state.historico=d.historico;updateStats();renderEquipamentos();renderManutencoes();renderBaixados();renderRecentActivities()}
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 document.addEventListener('DOMContentLoaded',async()=>{try{sync(await api('/api/bootstrap'))}catch(e){showToast(e.message,'error')} const hoje=new Date().toISOString().slice(0,10);['maint-data','baixa-data','cad-data-aquisicao'].forEach(id=>{if($(id))$(id).value=hoje});$('manual-barcode').addEventListener('keypress',e=>{if(e.key==='Enter')processManualBarcode()})});
