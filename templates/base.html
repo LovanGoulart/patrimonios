@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/static/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+    <title>Patrimônio Pro - Gestão de Equipamentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb; --primary-dark: #1d4ed8; --primary-light: #dbeafe;
+            --success: #10b981; --success-light: #d1fae5;
+            --warning: #f59e0b; --warning-light: #fef3c7;
+            --danger: #ef4444; --danger-light: #fee2e2;
+            --info: #06b6d4; --info-light: #cffafe;
+            --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b;
+            --gray-600: #475569; --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --radius: 12px; --radius-lg: 16px; --radius-sm: 8px;
+            --footer-height: 64px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--gray-50); color: var(--gray-800); min-height: 100dvh;
+            -webkit-font-smoothing: antialiased; padding-bottom: var(--footer-height);
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 50%, #06b6d4 100%);
+            color: white; padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-lg);
+        }
+        .header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px; max-width: 1200px; margin: 0 auto;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.2);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; backdrop-filter: blur(10px);
+        }
+        .logo-text { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        .logo-text span { font-weight: 300; opacity: 0.8; }
+        .header-actions { display: flex; gap: 8px; align-items: center; }
+        .header-user { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; opacity:.9; padding:0 4px; }
+        .header-btn {
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+            color: white; padding: 8px 14px; border-radius: var(--radius-sm);
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; gap: 6px; font-family: inherit;
+        }
+        .header-btn:hover { background: rgba(255,255,255,0.25); }
+        .header-btn.primary { background: white; color: var(--primary); }
+        .header-btn.primary:hover { background: var(--gray-100); }
+        .nav-tabs {
+            display: flex; gap: 4px; padding: 0 20px;
+            max-width: 1200px; margin: 0 auto; overflow-x: auto; scrollbar-width: none;
+        }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .nav-tab {
+            background: transparent; border: none; color: rgba(255,255,255,0.7);
+            padding: 12px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+            border-bottom: 3px solid transparent; transition: all 0.2s;
+            white-space: nowrap; display: flex; align-items: center; gap: 6px; font-family: inherit;
+        }
+        .nav-tab:hover { color: white; }
+        .nav-tab.active { color: white; border-bottom-color: white; }
+        .nav-tab .badge { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+
+        /* ===== MOBILE HEADER (simplificado) ===== */
+        .mobile-header { display: none; }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ===== FOOTER MENU (MOBILE) ===== */
+        .footer-menu {
+            display: none;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: #fff; border-top: 1px solid var(--gray-200);
+            z-index: 200; box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        .footer-menu-inner {
+            display: flex; justify-content: space-around; align-items: center;
+            height: var(--footer-height); max-width: 600px; margin: 0 auto;
+        }
+        .footer-item {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 3px; padding: 6px 4px; border: none; background: transparent;
+            color: var(--gray-400); font-size: 10px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; font-family: inherit; position: relative;
+        }
+        .footer-item i { font-size: 20px; transition: all 0.2s; }
+        .footer-item.active { color: var(--primary); }
+        .footer-item.active i { transform: translateY(-2px); }
+        .footer-item.scan-btn {
+            position: relative; top: -16px;
+            background: linear-gradient(135deg, var(--primary), #06b6d4);
+            color: #fff; width: 52px; height: 52px; border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+            flex: 0 0 52px;
+        }
+        .footer-item.scan-btn i { font-size: 22px; }
+        .footer-item .badge {
+            position: absolute; top: 2px; right: calc(50% - 16px);
+            background: var(--danger); color: #fff; font-size: 9px;
+            width: 16px; height: 16px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* ===== DASHBOARD ===== */
+        .scanner-hero { text-align: center; padding: 40px 20px; }
+        .scanner-hero h1 { font-size: 32px; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; }
+        .scanner-hero p { color: var(--gray-500); font-size: 16px; margin-bottom: 32px; }
+        .scanner-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .scanner-btn {
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            padding: 32px 40px; border-radius: var(--radius-lg); border: 2px solid var(--gray-200);
+            background: white; cursor: pointer; transition: all 0.3s; min-width: 180px;
+        }
+        .scanner-btn:hover { border-color: var(--primary); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+        .scanner-btn .icon {
+            width: 64px; height: 64px; border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: center; font-size: 28px;
+        }
+        .scanner-btn.camera .icon { background: var(--primary-light); color: var(--primary); }
+        .scanner-btn.manual .icon { background: var(--warning-light); color: var(--warning); }
+        .scanner-btn .label { font-size: 15px; font-weight: 700; color: var(--gray-800); }
+        .scanner-btn .sublabel { font-size: 12px; color: var(--gray-400); }
+        .card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
+        .card-header {
+            padding: 20px 24px; border-bottom: 1px solid var(--gray-100);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .card-header h2 { font-size: 17px; font-weight: 700; color: var(--gray-800); display: flex; align-items: center; gap: 10px; }
+        .card-header h2 i { color: var(--primary); }
+        .card-body { padding: 24px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .stat-card {
+            background: white; border-radius: var(--radius); padding: 20px;
+            box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: all 0.2s;
+        }
+        .stat-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+        .stat-card .stat-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px;
+        }
+        .stat-card.blue .stat-icon { background: var(--primary-light); color: var(--primary); }
+        .stat-card.green .stat-icon { background: var(--success-light); color: var(--success); }
+        .stat-card.orange .stat-icon { background: var(--warning-light); color: var(--warning); }
+        .stat-card.red .stat-icon { background: var(--danger-light); color: var(--danger); }
+        .stat-card.cyan .stat-icon { background: var(--info-light); color: var(--info); }
+        .stat-card .stat-value { font-size: 28px; font-weight: 800; color: var(--gray-900); line-height: 1; }
+        .stat-card .stat-label { font-size: 13px; color: var(--gray-500); margin-top: 4px; font-weight: 500; }
+
+        /* ===== MODAIS ===== */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px); z-index: 1000; display: none;
+            align-items: center; justify-content: center; padding: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: white; border-radius: var(--radius-lg); width: 100%;
+            max-width: 520px; max-height: 90vh; overflow: hidden;
+            box-shadow: var(--shadow-xl); animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-lg { max-width: 700px; }
+        .modal-xl { max-width: 900px; }
+        .modal-header {
+            padding: 20px 24px; border-bottom: 1px solid var(--gray-100);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .modal-header h3 { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .modal-close {
+            background: var(--gray-100); border: none; width: 36px; height: 36px;
+            border-radius: 10px; cursor: pointer; color: var(--gray-500);
+            font-size: 16px; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { background: var(--gray-200); color: var(--gray-700); }
+        .modal-body { padding: 24px; overflow-y: auto; max-height: calc(90vh - 140px); }
+        .modal-footer { padding: 16px 24px; border-top: 1px solid var(--gray-100); display: flex; gap: 10px; justify-content: flex-end; }
+        .scanner-modal .modal-body { padding: 0; max-height: none; }
+        #qr-reader { width: 100% !important; border: none !important; }
+        .scanner-status {
+            padding: 16px 24px; background: var(--gray-50); border-top: 1px solid var(--gray-100);
+            text-align: center; font-size: 13px; color: var(--gray-500);
+        }
+        .scanner-status i { color: var(--primary); margin-right: 6px; }
+
+        /* ===== FORMULÁRIOS ===== */
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block; font-size: 12px; font-weight: 600; color: var(--gray-600);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+        }
+        .form-group label .required { color: var(--danger); margin-left: 2px; }
+        .form-control {
+            width: 100%; padding: 12px 14px; border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm); font-size: 14px; font-family: inherit;
+            color: var(--gray-800); transition: all 0.2s; background: white;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+        .form-control::placeholder { color: var(--gray-400); }
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+        }
+        textarea.form-control { resize: vertical; min-height: 80px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 20px; border-radius: var(--radius-sm); font-size: 14px;
+            font-weight: 600; font-family: inherit; cursor: pointer; transition: all 0.2s;
+            border: none; white-space: nowrap;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: #059669; }
+        .btn-warning { background: var(--warning); color: white; }
+        .btn-warning:hover { background: #d97706; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-secondary { background: var(--gray-100); color: var(--gray-700); }
+        .btn-secondary:hover { background: var(--gray-200); }
+        .btn-outline { background: transparent; border: 2px solid var(--gray-200); color: var(--gray-600); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-sm { padding: 8px 14px; font-size: 13px; }
+        .btn-lg { padding: 14px 28px; font-size: 15px; }
+        .btn-block { width: 100%; }
+
+        /* ===== AÇÕES ===== */
+        .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .action-btn {
+            display: flex; align-items: center; gap: 14px; padding: 18px 20px;
+            border-radius: var(--radius); border: 2px solid var(--gray-200);
+            background: white; cursor: pointer; transition: all 0.2s;
+            text-align: left; width: 100%; font-family: inherit;
+        }
+        .action-btn:hover { border-color: var(--primary); box-shadow: var(--shadow); transform: translateY(-1px); }
+        .action-btn .action-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .action-btn .action-content { flex: 1; }
+        .action-btn .action-title { font-size: 15px; font-weight: 700; color: var(--gray-800); margin-bottom: 2px; }
+        .action-btn .action-desc { font-size: 12px; color: var(--gray-400); }
+        .action-btn.green { border-color: #bbf7d0; }
+        .action-btn.green .action-icon { background: var(--success-light); color: var(--success); }
+        .action-btn.green:hover { border-color: var(--success); }
+        .action-btn.orange { border-color: #fde68a; }
+        .action-btn.orange .action-icon { background: var(--warning-light); color: var(--warning); }
+        .action-btn.orange:hover { border-color: var(--warning); }
+        .action-btn.red { border-color: #fecaca; }
+        .action-btn.red .action-icon { background: var(--danger-light); color: var(--danger); }
+        .action-btn.red:hover { border-color: var(--danger); }
+        .action-btn.blue { border-color: #bfdbfe; }
+        .action-btn.blue .action-icon { background: var(--primary-light); color: var(--primary); }
+        .action-btn.blue:hover { border-color: var(--primary); }
+
+        /* ===== LISTAS ===== */
+        .equipment-list { display: flex; flex-direction: column; gap: 12px; }
+        .equipment-card {
+            background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+            padding: 16px 20px; display: flex; align-items: center; gap: 16px;
+            transition: all 0.2s; cursor: pointer;
+        }
+        .equipment-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+        .equipment-card .eq-icon {
+            width: 52px; height: 52px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; flex-shrink: 0;
+        }
+        .equipment-card .eq-info { flex: 1; min-width: 0; }
+        .equipment-card .eq-name {
+            font-size: 15px; font-weight: 700; color: var(--gray-800);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .equipment-card .eq-meta {
+            font-size: 12px; color: var(--gray-400); margin-top: 2px;
+            display: flex; gap: 12px; flex-wrap: wrap;
+        }
+        .equipment-card .eq-meta span { display: flex; align-items: center; gap: 4px; }
+        .equipment-card .eq-status {
+            padding: 5px 12px; border-radius: 20px; font-size: 11px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;
+        }
+        .status-ativo { background: var(--success-light); color: #166534; }
+        .status-manutencao { background: var(--warning-light); color: #92400e; }
+        .status-baixado { background: var(--danger-light); color: #991b1b; }
+        .status-arquivado { background: var(--gray-100); color: var(--gray-500); }
+        .equipment-card .eq-actions { display: flex; gap: 6px; flex-shrink: 0; }
+        .eq-actions button {
+            width: 34px; height: 34px; border-radius: 8px; border: none;
+            cursor: pointer; font-size: 14px; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .eq-actions .btn-edit { background: var(--primary-light); color: var(--primary); }
+        .eq-actions .btn-edit:hover { background: var(--primary); color: white; }
+        .eq-actions .btn-maint { background: var(--warning-light); color: var(--warning); }
+        .eq-actions .btn-maint:hover { background: var(--warning); color: white; }
+        .eq-actions .btn-delete { background: var(--danger-light); color: var(--danger); }
+        .eq-actions .btn-delete:hover { background: var(--danger); color: white; }
+        .maintenance-card {
+            background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+            padding: 16px 20px; margin-bottom: 10px;
+        }
+        .maintenance-card .maint-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+        }
+        .maintenance-card .maint-type {
+            font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+        }
+        .maint-type.preventiva { background: var(--info-light); color: #0e7490; }
+        .maint-type.correctiva { background: var(--warning-light); color: #92400e; }
+        .maintenance-card .maint-date { font-size: 12px; color: var(--gray-400); }
+        .maintenance-card .maint-desc { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+        .maintenance-card .maint-tech {
+            margin-top: 10px; font-size: 12px; color: var(--gray-500);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .empty-state { text-align: center; padding: 60px 20px; }
+        .empty-state .empty-icon {
+            width: 80px; height: 80px; border-radius: 20px; background: var(--gray-100);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; margin: 0 auto 20px; color: var(--gray-400);
+        }
+        .empty-state h3 { font-size: 18px; font-weight: 700; color: var(--gray-700); margin-bottom: 6px; }
+        .empty-state p { font-size: 14px; color: var(--gray-400); }
+        .search-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+        .search-bar .form-control { flex: 1; }
+        .filter-tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter-tab {
+            padding: 8px 16px; border-radius: 20px; border: 1px solid var(--gray-200);
+            background: white; font-size: 13px; font-weight: 600; color: var(--gray-500);
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
+        }
+        .filter-tab:hover { border-color: var(--gray-300); }
+        .filter-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* ===== DETALHES ===== */
+        .detail-section { margin-bottom: 20px; }
+        .detail-section h4 {
+            font-size: 13px; font-weight: 700; color: var(--gray-600);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .detail-item { background: var(--gray-50); padding: 12px 14px; border-radius: var(--radius-sm); }
+        .detail-item .detail-label { font-size: 11px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .detail-item .detail-value { font-size: 14px; font-weight: 600; color: var(--gray-800); word-break: break-word; }
+        .detail-item.full-width { grid-column: 1 / -1; }
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gray-200); }
+        .timeline-item { position: relative; padding-bottom: 20px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -24px; top: 2px;
+            width: 12px; height: 12px; border-radius: 50%; background: var(--primary);
+            border: 3px solid white; box-shadow: 0 0 0 2px var(--primary-light);
+        }
+        .timeline-item.cadastro::before { background: var(--success); box-shadow: 0 0 0 2px var(--success-light); }
+        .timeline-item.manutencao::before { background: var(--warning); box-shadow: 0 0 0 2px var(--warning-light); }
+        .timeline-item.baixa::before { background: var(--danger); box-shadow: 0 0 0 2px var(--danger-light); }
+        .timeline-date { font-size: 11px; color: var(--gray-400); margin-bottom: 4px; }
+        .timeline-title { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+        .timeline-desc { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            position: fixed; top: 20px; right: 20px; z-index: 2000;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .toast {
+            background: white; border-radius: var(--radius); padding: 14px 18px;
+            box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 12px;
+            min-width: 320px; animation: toastIn 0.3s ease; border-left: 4px solid;
+        }
+        @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .toast.success { border-left-color: var(--success); }
+        .toast.error { border-left-color: var(--danger); }
+        .toast.warning { border-left-color: var(--warning); }
+        .toast.info { border-left-color: var(--primary); }
+        .toast-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; flex-shrink: 0;
+        }
+        .toast.success .toast-icon { background: var(--success-light); color: var(--success); }
+        .toast.error .toast-icon { background: var(--danger-light); color: var(--danger); }
+        .toast.warning .toast-icon { background: var(--warning-light); color: var(--warning); }
+        .toast.info .toast-icon { background: var(--primary-light); color: var(--primary); }
+        .toast-content { flex: 1; }
+        .toast-title { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+        .toast-message { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+        .toast-close { background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 16px; padding: 4px; }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .header-top { padding: 12px 16px; }
+            .logo-text { font-size: 16px; }
+            .nav-tabs { padding: 0 16px; }
+            .nav-tab { padding: 10px 14px; font-size: 12px; }
+            .main-content { padding: 16px; padding-bottom: calc(var(--footer-height) + 16px); }
+            .scanner-hero h1 { font-size: 24px; }
+            .form-row, .form-row-3 { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .equipment-card { flex-wrap: wrap; }
+            .equipment-card .eq-actions { width: 100%; justify-content: flex-end; margin-top: 10px; }
+            .action-grid { grid-template-columns: 1fr; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .toast-container { left: 16px; right: 16px; top: auto; bottom: calc(var(--footer-height) + 16px); }
+            .toast { min-width: auto; width: 100%; }
+
+            /* Esconde nav-tabs no mobile, mostra footer */
+            .nav-tabs { display: none; }
+            .footer-menu { display: block; }
+            .header-actions .header-btn span { display: none; }
+            .header-actions .header-btn { padding: 8px; }
+            .header-user { display: none; }
+        }
+        @media (min-width: 769px) {
+            .footer-menu { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+        <div class="header-top">
+            <div class="logo">
+                <div class="logo-icon">📦</div>
+                <div class="logo-text">Patrimônio <span>Pro</span></div>
+            </div>
+            <div class="header-actions">
+                <span class="header-user" title="Usuário conectado"><i class="fas fa-user-circle"></i> {{ usuario }}</span>
+                <button class="header-btn" id="install-app" onclick="installPWA()" style="display:none" title="Instalar app">
+                    <i class="fas fa-mobile-screen-button"></i> <span>Instalar</span>
+                </button>
+                <button class="header-btn" onclick="exportData()" title="Exportar CSV">
+                    <i class="fas fa-download"></i> <span>Exportar</span>
+                </button>
+                <button class="header-btn primary" onclick="openScanner()" title="Novo scan">
+                    <i class="fas fa-plus"></i> <span>Novo Scan</span>
+                </button>
+                <form method="post" action="/logout" style="display:inline">
+                    <button class="header-btn" type="submit" title="Sair"><i class="fas fa-right-from-bracket"></i> <span>Sair</span></button>
+                </form>
+            </div>
+        </div>
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-section="dashboard" onclick="switchTab('dashboard')">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </button>
+            <button class="nav-tab" data-section="equipamentos" onclick="switchTab('equipamentos')">
+                <i class="fas fa-desktop"></i> Equipamentos <span class="badge" id="nav-count-eq">0</span>
+            </button>
+            <button class="nav-tab" data-section="manutencoes" onclick="switchTab('manutencoes')">
+                <i class="fas fa-tools"></i> Manutenções <span class="badge" id="nav-count-maint">0</span>
+            </button>
+            <button class="nav-tab" data-section="baixados" onclick="switchTab('baixados')">
+                <i class="fas fa-archive"></i> Baixados <span class="badge" id="nav-count-baixa">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- ===== DASHBOARD ===== -->
+        <section id="section-dashboard" class="section active">
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Total de Equipamentos</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-value" id="stat-ativo">0</div>
+                    <div class="stat-label">Equipamentos Ativos</div>
+                </div>
+                <div class="stat-card orange">
+                    <div class="stat-icon"><i class="fas fa-tools"></i></div>
+                    <div class="stat-value" id="stat-manutencao">0</div>
+                    <div class="stat-label">Em Manutenção</div>
+                </div>
+                <div class="stat-card red">
+                    <div class="stat-icon"><i class="fas fa-arrow-down"></i></div>
+                    <div class="stat-value" id="stat-baixado">0</div>
+                    <div class="stat-label">Baixados</div>
+                </div>
+                <div class="stat-card cyan">
+                    <div class="stat-icon"><i class="fas fa-wrench"></i></div>
+                    <div class="stat-value" id="stat-manutencoes-total">0</div>
+                    <div class="stat-label">Manutenções Realizadas</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-clock"></i> Atividades Recentes</h2>
+                </div>
+                <div class="card-body">
+                    <div id="recent-activities">
+                        <div class="empty-state">
+                            <div class="empty-icon">📋</div>
+                            <h3>Nenhuma atividade recente</h3>
+                            <p>Escaneie um equipamento para começar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EQUIPAMENTOS ===== -->
+        <section id="section-equipamentos" class="section">
+            <div class="search-bar">
+                <input type="text" class="form-control" id="search-equipamentos" placeholder="🔍 Buscar por nome, marca, patrimônio ou código de barras..." oninput="filterEquipamentos()">
+                <button class="btn btn-primary" onclick="openManualEntry()">
+                    <i class="fas fa-keyboard"></i> Digitar
+                </button>
+            </div>
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterStatus('todos')">Todos</button>
+                <button class="filter-tab" onclick="filterStatus('ativo')">Ativos</button>
+                <button class="filter-tab" onclick="filterStatus('manutencao')">Em Manutenção</button>
+                <button class="filter-tab" onclick="filterStatus('baixado')">Baixados</button>
+            </div>
+            <div id="equipamentos-list" class="equipment-list"></div>
+        </section>
+
+        <!-- ===== MANUTENÇÕES ===== -->
+        <section id="section-manutencoes" class="section">
+            <div class="search-bar">
+                <input type="text" class="form-control" id="search-manutencoes" placeholder="🔍 Buscar manutenção por equipamento ou técnico..." oninput="filterManutencoes()">
+            </div>
+            <div id="manutencoes-list"></div>
+        </section>
+
+        <!-- ===== BAIXADOS ===== -->
+        <section id="section-baixados" class="section">
+            <div class="search-bar">
+                <input type="text" class="form-control" id="search-baixados" placeholder="🔍 Buscar equipamento baixado..." oninput="filterBaixados()">
+            </div>
+            <div id="baixados-list" class="equipment-list"></div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER MENU (MOBILE) ===== -->
+    <nav class="footer-menu">
+        <div class="footer-menu-inner">
+            <button class="footer-item active" data-section="dashboard" onclick="switchTab('dashboard')">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </button>
+            <button class="footer-item" data-section="equipamentos" onclick="switchTab('equipamentos')">
+                <i class="fas fa-desktop"></i>
+                <span>Equip.</span>
+                <span class="badge" id="foot-count-eq" style="display:none">0</span>
+            </button>
+            <button class="footer-item scan-btn" onclick="openScanner()" title="Novo Scan">
+                <i class="fas fa-plus"></i>
+            </button>
+            <button class="footer-item" data-section="manutencoes" onclick="switchTab('manutencoes')">
+                <i class="fas fa-tools"></i>
+                <span>Manut.</span>
+                <span class="badge" id="foot-count-maint" style="display:none">0</span>
+            </button>
+            <button class="footer-item" data-section="baixados" onclick="switchTab('baixados')">
+                <i class="fas fa-archive"></i>
+                <span>Baixas</span>
+                <span class="badge" id="foot-count-baixa" style="display:none">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MODAL: SCANNER DE CÂMERA ===== -->
+    <div class="modal-overlay" id="modal-scanner">
+        <div class="modal modal-lg scanner-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-camera"></i> Escanear Código de Barras</h3>
+                <button class="modal-close" onclick="closeScanner()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="qr-reader"></div>
+            </div>
+            <div class="scanner-status">
+                <i class="fas fa-info-circle"></i> Posicione o código de barras dentro da área de leitura
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeScanner()">Cancelar</button>
+                <button class="btn btn-outline" onclick="switchToManual()">
+                    <i class="fas fa-keyboard"></i> Digitar Manualmente
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: ENTRADA MANUAL ===== -->
+    <div class="modal-overlay" id="modal-manual">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-keyboard"></i> Digitar Código Manualmente</h3>
+                <button class="modal-close" onclick="closeModal('modal-manual')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Código de Barras / Patrimônio <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="manual-barcode" placeholder="Ex: 7891000315507" autofocus>
+                </div>
+                <p style="font-size: 13px; color: var(--gray-400); margin-top: 8px;">
+                    <i class="fas fa-lightbulb"></i> Digite o número do código de barras ou número de patrimônio do equipamento.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-manual')">Cancelar</button>
+                <button class="btn btn-primary" onclick="processManualBarcode()">
+                    <i class="fas fa-search"></i> Buscar Equipamento
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: AÇÕES DO EQUIPAMENTO ===== -->
+    <div class="modal-overlay" id="modal-actions">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-bolt"></i> Equipamento Encontrado</h3>
+                <button class="modal-close" onclick="closeModal('modal-actions')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="width: 60px; height: 60px; background: var(--success-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 12px;">✅</div>
+                    <h4 style="font-size: 16px; font-weight: 700; color: var(--gray-800);" id="action-eq-name">Nome do Equipamento</h4>
+                    <p style="font-size: 13px; color: var(--gray-400); margin-top: 4px;" id="action-eq-barcode">Código: 7891000315507</p>
+                </div>
+                <div class="action-grid">
+                    <button class="action-btn green" onclick="actionRenovarManutencao()">
+                        <div class="action-icon"><i class="fas fa-sync-alt"></i></div>
+                        <div class="action-content">
+                            <div class="action-title">Renovar Manutenção</div>
+                            <div class="action-desc">Registrar nova manutenção preventiva</div>
+                        </div>
+                    </button>
+                    <button class="action-btn orange" onclick="actionDarBaixa()">
+                        <div class="action-icon"><i class="fas fa-arrow-down"></i></div>
+                        <div class="action-content">
+                            <div class="action-title">Dar Baixa</div>
+                            <div class="action-desc">Remover equipamento do ativo</div>
+                        </div>
+                    </button>
+                    <button class="action-btn blue" onclick="actionVerDetalhes()">
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-content">
+                            <div class="action-title">Ver Detalhes</div>
+                            <div class="action-desc">Visualizar histórico completo</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: CADASTRAR NOVO EQUIPAMENTO ===== -->
+    <div class="modal-overlay" id="modal-cadastro">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Cadastrar Novo Equipamento</h3>
+                <button class="modal-close" onclick="closeModal('modal-cadastro')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Código de Barras / Patrimônio <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="cad-barcode" readonly>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nome do Equipamento <span class="required">*</span></label>
+                        <input type="text" class="form-control" id="cad-nome" placeholder="Ex: Notebook Dell Latitude">
+                    </div>
+                    <div class="form-group">
+                        <label>Marca / Fabricante <span class="required">*</span></label>
+                        <input type="text" class="form-control" id="cad-marca" placeholder="Ex: Dell">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" class="form-control" id="cad-modelo" placeholder="Ex: Latitude 5420">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Série</label>
+                        <input type="text" class="form-control" id="cad-serie" placeholder="Ex: SN123456789">
+                    </div>
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Categoria <span class="required">*</span></label>
+                        <select class="form-control" id="cad-categoria">
+                            <option value="">Selecione...</option>
+                            <option value="Informática">Informática</option>
+                            <option value="Móveis">Móveis</option>
+                            <option value="Eletrônicos">Eletrônicos</option>
+                            <option value="Máquinas e Ferramentas">Máquinas e Ferramentas</option>
+                            <option value="Veículos">Veículos</option>
+                            <option value="Equipamentos de Escritório">Equipamentos de Escritório</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Local / Setor <span class="required">*</span></label>
+                        <input type="text" class="form-control" id="cad-local" placeholder="Ex: TI - 3º Andar">
+                    </div>
+                    <div class="form-group">
+                        <label>Responsável <span class="required">*</span></label>
+                        <input type="text" class="form-control" id="cad-responsavel" placeholder="Ex: João Silva">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data de Aquisição</label>
+                        <input type="date" class="form-control" id="cad-data-aquisicao">
+                    </div>
+                    <div class="form-group">
+                        <label>Valor de Aquisição (R$)</label>
+                        <input type="text" class="form-control" id="cad-valor" placeholder="0,00" oninput="formatCurrency(this)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea class="form-control" id="cad-observacoes" placeholder="Informações adicionais sobre o equipamento..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-cadastro')">Cancelar</button>
+                <button class="btn btn-success" onclick="salvarEquipamento()">
+                    <i class="fas fa-save"></i> Salvar Equipamento
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: RENOVAR MANUTENÇÃO ===== -->
+    <div class="modal-overlay" id="modal-manutencao">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-tools"></i> Registrar Manutenção</h3>
+                <button class="modal-close" onclick="closeModal('modal-manutencao')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Equipamento</label>
+                    <input type="text" class="form-control" id="maint-equipamento" readonly>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tipo de Manutenção <span class="required">*</span></label>
+                        <select class="form-control" id="maint-tipo">
+                            <option value="preventiva">Preventiva</option>
+                            <option value="correctiva">Corretiva</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Data da Manutenção <span class="required">*</span></label>
+                        <input type="date" class="form-control" id="maint-data">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Técnico Responsável <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="maint-tecnico" placeholder="Nome do técnico">
+                </div>
+                <div class="form-group">
+                    <label>Descrição dos Serviços <span class="required">*</span></label>
+                    <textarea class="form-control" id="maint-descricao" placeholder="Descreva os serviços realizados..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Custo (R$)</label>
+                    <input type="text" class="form-control" id="maint-custo" placeholder="0,00" oninput="formatCurrency(this)">
+                </div>
+                <div class="form-group">
+                    <label>Próxima Manutenção Preventiva</label>
+                    <input type="date" class="form-control" id="maint-proxima">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-manutencao')">Cancelar</button>
+                <button class="btn btn-success" onclick="salvarManutencao()">
+                    <i class="fas fa-save"></i> Registrar Manutenção
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: DAR BAIXA ===== -->
+    <div class="modal-overlay" id="modal-baixa">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-arrow-down"></i> Dar Baixa no Equipamento</h3>
+                <button class="modal-close" onclick="closeModal('modal-baixa')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div style="background: var(--danger-light); border: 1px solid #fecaca; border-radius: var(--radius-sm); padding: 14px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px; color: #991b1b; font-size: 13px; font-weight: 600;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Atenção: Esta ação irá remover o equipamento do ativo.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Equipamento</label>
+                    <input type="text" class="form-control" id="baixa-equipamento" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Motivo da Baixa <span class="required">*</span></label>
+                    <select class="form-control" id="baixa-motivo">
+                        <option value="">Selecione o motivo...</option>
+                        <option value="Obsolescência">Obsolescência</option>
+                        <option value="Danos Irreparáveis">Danos Irreparáveis</option>
+                        <option value="Roubo/Furto">Roubo / Furto</option>
+                        <option value="Venda">Venda</option>
+                        <option value="Doação">Doação</option>
+                        <option value="Transferência">Transferência para Outro Setor</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Data da Baixa <span class="required">*</span></label>
+                    <input type="date" class="form-control" id="baixa-data">
+                </div>
+                <div class="form-group">
+                    <label>Responsável pela Baixa <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="baixa-responsavel" placeholder="Nome do responsável">
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea class="form-control" id="baixa-observacoes" placeholder="Detalhes adicionais sobre a baixa..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-baixa')">Cancelar</button>
+                <button class="btn btn-danger" onclick="confirmarBaixa()">
+                    <i class="fas fa-check"></i> Confirmar Baixa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: DETALHES DO EQUIPAMENTO ===== -->
+    <div class="modal-overlay" id="modal-detalhes">
+        <div class="modal modal-xl">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Detalhes do Equipamento</h3>
+                <button class="modal-close" onclick="closeModal('modal-detalhes')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="detalhes-content"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-detalhes')">Fechar</button>
+                <button class="btn btn-primary" onclick="editFromDetails()">
+                    <i class="fas fa-edit"></i> Editar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: EDITAR EQUIPAMENTO ===== -->
+    <div class="modal-overlay" id="modal-editar">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Editar Equipamento</h3>
+                <button class="modal-close" onclick="closeModal('modal-editar')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="editar-content"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-editar')">Cancelar</button>
+                <button class="btn btn-success" onclick="salvarEdicao()">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+    let deferredInstallPrompt=null;
+    if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("/service-worker.js").catch(()=>{}));
+    window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;const b=document.getElementById("install-app");if(b)b.style.display="inline-flex"});
+    async function installPWA(){if(!deferredInstallPrompt)return;deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;const b=document.getElementById("install-app");if(b)b.style.display="none"}
+    window.addEventListener("appinstalled",()=>{const b=document.getElementById("install-app");if(b)b.style.display="none"});
+    </script>
+</body>
+</html>

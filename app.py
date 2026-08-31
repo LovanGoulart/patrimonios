@@ -7,7 +7,7 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
 BASE = Path(__file__).resolve().parent
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{BASE / 'patrimonio.db'}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('PATRIMONIO_SECRET_KEY', 'patrimonio-pro-chave-trocar-em-producao')
@@ -89,14 +89,12 @@ def login_required(view):
 
 @app.route('/')
 def index():
-    # A raiz do PWA é sempre a tela inicial de autenticação.
-    # O sistema autenticado fica em /sistema.
     return redirect(url_for('login'))
 
 @app.route('/sistema')
 @login_required
 def sistema():
-    return render_template('base_original.html', usuario=session.get('user_name', 'Usuário'))
+    return render_template('base.html', usuario=session.get('user_name', 'Usuário'), is_admin=session.get('user_email') == 'admin@patrimonio.pro')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -115,7 +113,7 @@ def login():
             session['user_name'] = usuario.nome
             session['user_email'] = usuario.email
             return redirect(url_for('sistema'))
-    return render_template('auth.html', mode='login', error=error)
+    return render_template('auth.html', mode='login', error=error, values={})
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
@@ -130,7 +128,7 @@ def cadastro():
         confirmar = request.form.get('confirmar_senha', '')
         values = {'nome': nome, 'email': email}
         if len(nome) < 2:
-            error = 'Informe seu nome.'
+            error = 'Informe seu nome completo.'
         elif '@' not in email or len(email) < 5:
             error = 'Informe um e-mail válido.'
         elif len(senha) < 6:
@@ -236,4 +234,6 @@ def export_csv():
     return app.response_class('\ufeff'+out.getvalue(),mimetype='text/csv',headers={'Content-Disposition':'attachment; filename=patrimonio_equipamentos.csv'})
 
 if __name__=='__main__':
+    with app.app_context():
+        db.create_all()
     app.run(host='0.0.0.0',port=int(os.getenv('PORT',5000)),debug=True)

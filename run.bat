@@ -1,6 +1,12 @@
 @echo off
-cd /d "%~dp0"
-if not exist .venv python -m venv .venv
-call .venv\Scripts\activate
-python -m pip install -r requirements.txt
+echo ==========================================
+echo    PATRIMONIO PRO - Iniciando servidor
+echo ==========================================
+if not exist venv (
+    echo Criando ambiente virtual...
+    python -m venv venv
+)
+call venv\Scripts\activate.bat
+pip install -r requirements.txt
 python app.py
+pause

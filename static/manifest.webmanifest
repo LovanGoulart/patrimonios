@@ -1,7 +1,7 @@
 {
   "name": "Patrimônio Pro",
   "short_name": "Patrimônio",
-  "description": "Gestão de equipamentos e patrimônio",
+  "description": "Gestão completa de equipamentos e patrimônio",
   "start_url": "/login",
   "scope": "/",
   "display": "standalone",

@@ -2,40 +2,141 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#2563eb">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/static/icons/icon-192.png">
-<title>{{ 'Entrar' if mode == 'login' else 'Criar conta' }} — Patrimônio Pro</title>
+<link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+<title>Patrimônio Pro — Gestão de Equipamentos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#2563eb;--primary-dark:#1d4ed8;--bg:#f1f5f9;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--danger:#dc2626}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#eff6ff,#f8fafc);color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px}.auth{width:100%;max-width:420px}.brand{text-align:center;margin-bottom:22px}.logo{width:64px;height:64px;margin:auto;background:linear-gradient(135deg,var(--primary),#06b6d4);border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;box-shadow:0 12px 30px #2563eb33}.brand h1{font-size:24px;margin:12px 0 4px}.brand p{margin:0;color:var(--muted);font-size:13px}.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 20px 50px #0f172a14}.card h2{margin:0 0 6px;font-size:20px}.subtitle{color:var(--muted);font-size:13px;margin:0 0 22px}.field{margin-bottom:16px}.field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px;color:#475569}.field input{width:100%;padding:13px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none}.field input:focus{border-color:var(--primary);box-shadow:0 0 0 4px #dbeafe}.btn{width:100%;border:0;border-radius:10px;padding:14px;background:var(--primary);color:#fff;font-weight:800;font-size:15px;cursor:pointer}.btn:hover{background:var(--primary-dark)}.error{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:10px;padding:11px 12px;font-size:13px;margin-bottom:16px}.link{text-align:center;margin-top:18px;font-size:13px;color:var(--muted)}.link a{color:var(--primary);font-weight:800;text-decoration:none}.install{display:none;margin:14px auto 0;border:1px solid var(--border);background:#fff;color:#475569;border-radius:10px;padding:9px 14px;font-weight:700;cursor:pointer}
-@media(max-width:480px){body{padding:14px}.card{padding:22px}.brand{margin-bottom:16px}}
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#dbeafe;--bg:#f1f5f9;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--danger:#dc2626;--success:#10b981;--radius:16px;--shadow:0 20px 50px rgba(15,23,42,0.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{margin:0;min-height:100dvh;font-family:'Inter',system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#eff6ff 0%,#f8fafc 50%,#e0f2fe 100%);color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px;-webkit-font-smoothing:antialiased}
+.auth{width:100%;max-width:420px;animation:slideUp 0.5s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.brand{text-align:center;margin-bottom:28px}
+.logo{width:72px;height:72px;margin:0 auto 16px;background:linear-gradient(135deg,var(--primary),#06b6d4);border-radius:20px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;box-shadow:0 12px 30px rgba(37,99,235,0.25);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.brand h1{font-size:26px;margin:0 0 6px;font-weight:800;letter-spacing:-0.5px}
+.brand h1 span{font-weight:300;opacity:0.8}
+.brand p{margin:0;color:var(--muted);font-size:14px;font-weight:500}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+.card h2{margin:0 0 6px;font-size:20px;font-weight:700}
+.subtitle{color:var(--muted);font-size:13px;margin:0 0 24px;font-weight:500}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;color:#475569}
+.field input, .field select{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:15px;outline:none;font-family:inherit;transition:all 0.2s;background:#fff;color:var(--text)}
+.field input:focus, .field select:focus{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-light)}
+.field input::placeholder{color:#94a3b8}
+.btn{width:100%;border:0;border-radius:12px;padding:15px;background:var(--primary);color:#fff;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit}
+.btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.error{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:12px;padding:12px 14px;font-size:13px;margin-bottom:18px;font-weight:600;display:flex;align-items:center;gap:8px}
+.link{text-align:center;margin-top:22px;font-size:14px;color:var(--muted);font-weight:500}
+.link a{color:var(--primary);font-weight:700;text-decoration:none;cursor:pointer}
+.link a:hover{text-decoration:underline}
+.toggle-wrap{display:flex;background:var(--bg);border-radius:12px;padding:4px;margin-bottom:24px}
+.toggle-wrap button{flex:1;border:none;background:transparent;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;font-family:inherit}
+.toggle-wrap button.active{background:#fff;color:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.install{display:none;margin:20px auto 0;border:1px solid var(--border);background:#fff;color:#475569;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;width:100%;font-size:14px;font-family:inherit;transition:all 0.2s}
+.install:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.pwa-badge{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:12px}
+.form-section{display:none}
+.form-section.active{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media(max-width:480px){body{padding:16px}.card{padding:24px}.brand{margin-bottom:20px}.logo{width:64px;height:64px;font-size:28px}}
 </style>
 </head>
 <body>
 <div class="auth">
-  <div class="brand"><div class="logo">📦</div><h1>Patrimônio <span style="font-weight:300">Pro</span></h1><p>Gestão de equipamentos e patrimônio</p></div>
-  <div class="card">
-    <h2>{{ 'Entrar no sistema' if mode == 'login' else 'Criar sua conta' }}</h2>
-    <p class="subtitle">{{ 'Acesse seu painel de patrimônio.' if mode == 'login' else 'Cadastre-se para começar a usar o sistema.' }}</p>
-    {% if error %}<div class="error">{{ error }}</div>{% endif %}
-    <form method="post" autocomplete="on">
-      {% if mode == 'cadastro' %}
-      <div class="field"><label>Nome</label><input name="nome" type="text" value="{{ values.nome|default('') }}" required autocomplete="name" placeholder="Seu nome"></div>
-      {% endif %}
-      <div class="field"><label>E-mail</label><input name="email" type="email" value="{{ values.email|default('') }}" required autocomplete="email" placeholder="voce@exemplo.com"></div>
-      <div class="field"><label>Senha</label><input name="senha" type="password" required autocomplete="{{ 'new-password' if mode == 'cadastro' else 'current-password' }}" placeholder="Mínimo de 6 caracteres"></div>
-      {% if mode == 'cadastro' %}<div class="field"><label>Confirmar senha</label><input name="confirmar_senha" type="password" required autocomplete="new-password" placeholder="Digite a senha novamente"></div>{% endif %}
-      <button class="btn" type="submit">{{ 'Entrar' if mode == 'login' else 'Criar conta' }}</button>
-    </form>
-    <div class="link">{% if mode == 'login' %}Ainda não tem conta? <a href="/cadastro">Criar conta</a>{% else %}Já possui conta? <a href="/login">Entrar</a>{% endif %}</div>
+  <div class="brand">
+    <div class="logo">📦</div>
+    <h1>Patrimônio <span>Pro</span></h1>
+    <p>Gestão completa de equipamentos e patrimônio</p>
+    <div class="pwa-badge">⚡ PWA — Instale no celular</div>
   </div>
+  <div class="card">
+    <div class="toggle-wrap">
+      <button id="tab-login" class="active" onclick="showLogin()">Entrar</button>
+      <button id="tab-cadastro" onclick="showCadastro()">Criar conta</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="form-login" class="form-section active">
+      <h2>Bem-vindo de volta</h2>
+      <p class="subtitle">Acesse seu painel de patrimônio.</p>
+      {% if error and mode == 'login' %}<div class="error">⚠️ {{ error }}</div>{% endif %}
+      <form method="post" action="/login" autocomplete="on">
+        <div class="field"><label>E-mail</label><input name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com"></div>
+        <div class="field"><label>Senha</label><input name="senha" type="password" required autocomplete="current-password" placeholder="Sua senha"></div>
+        <button class="btn" type="submit"><span>🔐</span> Entrar no sistema</button>
+      </form>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="form-cadastro" class="form-section">
+      <h2>Crie sua conta</h2>
+      <p class="subtitle">Cadastre-se para começar a gerenciar.</p>
+      {% if error and mode == 'cadastro' %}<div class="error">⚠️ {{ error }}</div>{% endif %}
+      <form method="post" action="/cadastro" autocomplete="on">
+        <div class="field"><label>Nome completo</label><input name="nome" type="text" value="{{ values.nome|default('', true) }}" required autocomplete="name" placeholder="Seu nome"></div>
+        <div class="field"><label>E-mail</label><input name="email" type="email" value="{{ values.email|default('', true) }}" required autocomplete="email" placeholder="voce@empresa.com"></div>
+        <div class="field"><label>Senha</label><input name="senha" type="password" required autocomplete="new-password" placeholder="Mínimo 6 caracteres"></div>
+        <div class="field"><label>Confirmar senha</label><input name="confirmar_senha" type="password" required autocomplete="new-password" placeholder="Repita a senha"></div>
+        <button class="btn" type="submit"><span>✨</span> Criar conta</button>
+      </form>
+    </div>
+  </div>
+
   <button id="installBtn" class="install">📲 Instalar Patrimônio Pro</button>
+
+  <p class="link" style="margin-top:16px;font-size:12px">
+    Versão 1.0 • Sistema PWA • Flask + SQLite
+  </p>
 </div>
+
 <script>
-if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));
-let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block'});document.getElementById('installBtn').onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('installBtn').style.display='none'};
+function showLogin(){
+  document.getElementById('form-login').classList.add('active');
+  document.getElementById('form-cadastro').classList.remove('active');
+  document.getElementById('tab-login').classList.add('active');
+  document.getElementById('tab-cadastro').classList.remove('active');
+  history.replaceState(null,'','/login');
+}
+function showCadastro(){
+  document.getElementById('form-cadastro').classList.add('active');
+  document.getElementById('form-login').classList.remove('active');
+  document.getElementById('tab-cadastro').classList.add('active');
+  document.getElementById('tab-login').classList.remove('active');
+  history.replaceState(null,'','/cadastro');
+}
+// Ativa aba correta baseada na URL
+if(window.location.pathname==='/cadastro') showCadastro();
+
+// PWA Service Worker
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/service-worker.js').catch(()=>{});
+  });
+}
+
+// Instalação PWA
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  document.getElementById('installBtn').style.display='block';
+});
+document.getElementById('installBtn').onclick=async()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  document.getElementById('installBtn').style.display='none';
+};
 </script>
 </body></html>
