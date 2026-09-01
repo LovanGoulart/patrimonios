@@ -119,12 +119,7 @@ function processBarcode(barcode){
     const e=state.equipamentos.find(x=>x.barcode===barcode);
     state.current=e||{barcode};
     if(e){
-        const an=$('action-eq-name');
-        const ab=$('action-eq-barcode');
-        if(an) an.textContent=e.nome;
-        if(ab) ab.textContent='Código: '+e.barcode;
-        const ma=$('modal-actions');
-        if(ma) ma.classList.add('active');
+        showDetalhes(e.id);
     } else {
         const cb=$('cad-barcode');
         if(cb) cb.value=barcode;
@@ -370,7 +365,7 @@ function updateStats(){
     const sm=$('stat-manutencao'); if(sm) sm.textContent=a.filter(e=>e.status==='manutencao').length;
     const sb=$('stat-baixado'); if(sb) sb.textContent=a.filter(e=>e.status==='baixado').length;
     const smt=$('stat-manutencoes-total'); if(smt) smt.textContent=state.manutencoes.length;
-    const nce=$('nav-count-eq'); if(nce) nce.textContent=a.filter(e=>e.status!=='baixado').length;
+    const nce=$('nav-count-eq'); if(nce){nce.textContent=''; nce.style.display='none';}
     const ncm=$('nav-count-maint'); if(ncm) ncm.textContent=state.manutencoes.length;
     const ncb=$('nav-count-baixa'); if(ncb) ncb.textContent=a.filter(e=>e.status==='baixado').length;
 }
@@ -378,7 +373,7 @@ function updateStats(){
 function updateFooterBadges(){
     const a=state.equipamentos;
     const fce=$('foot-count-eq');
-    if(fce){const c=a.filter(e=>e.status!=='baixado').length; fce.textContent=c; fce.style.display=c>0?'flex':'none';}
+    if(fce){fce.style.display='none';}
     const fcm=$('foot-count-maint');
     if(fcm){const c=state.manutencoes.length; fcm.textContent=c; fcm.style.display=c>0?'flex':'none';}
     const fcb=$('foot-count-baixa');
