@@ -324,6 +324,16 @@
         .eq-actions .btn-maint:hover { background: var(--warning); color: white; }
         .eq-actions .btn-delete { background: var(--danger-light); color: var(--danger); }
         .eq-actions .btn-delete:hover { background: var(--danger); color: white; }
+        .eq-actions .btn-trash { background: #fee2e2; color: #b91c1c; }
+        .eq-actions .btn-trash:hover { background: #b91c1c; color: white; }
+        .maint-delete-btn {
+            border: 1px solid #fecaca; background: var(--danger-light); color: #b91c1c;
+            border-radius: 8px; padding: 7px 11px; font-size: 12px; font-weight: 700;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+            transition: all 0.2s; font-family: inherit;
+        }
+        .maint-delete-btn:hover { background: var(--danger); color: white; border-color: var(--danger); }
+
         .maintenance-card {
             background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
             padding: 16px 20px; margin-bottom: 10px;

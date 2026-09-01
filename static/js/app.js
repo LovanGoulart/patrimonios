@@ -261,7 +261,7 @@ async function showDetalhes(id){
         if(d.manutencoes.length){
             html+=`<div class="detail-section"><h4><i class="fas fa-tools"></i> Histórico de Manutenções (${d.manutencoes.length})</h4>`;
             d.manutencoes.forEach(m=>{
-                html+=`<div class="maintenance-card"><div class="maint-header"><span class="maint-type ${m.tipo}">${m.tipo==='preventiva'?'Preventiva':'Corretiva'}</span><span class="maint-date">${formatDateBR(m.data)}</span></div><div class="maint-desc">${esc(m.descricao)}</div><div class="maint-tech"><i class="fas fa-user"></i> ${esc(m.tecnico)} ${m.custo?'| R$ '+esc(m.custo):''}</div></div>`;
+                html+=`<div class="maintenance-card"><div class="maint-header"><span class="maint-type ${m.tipo}">${m.tipo==='preventiva'?'Preventiva':'Corretiva'}</span><span class="maint-date">${formatDateBR(m.data)}</span></div><div class="maint-desc">${esc(m.descricao)}</div><div class="maint-tech"><i class="fas fa-user"></i> ${esc(m.tecnico)} ${m.custo?'| R$ '+esc(m.custo):''}</div><div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="maint-delete-btn" onclick="excluirManutencao(${m.id})" title="Excluir manutenção"><i class="fas fa-trash"></i> Excluir</button></div></div>`;
             });
             html+=`</div>`;
         }
@@ -322,6 +322,36 @@ async function salvarEdicao(){
     }catch(e){showToast(e.message,'error')}
 }
 
+// ===== EXCLUSÃO =====
+async function excluirEquipamento(id){
+    const e=state.equipamentos.find(x=>x.id===id);
+    if(!e) return;
+    const ok=confirm(`Excluir definitivamente o equipamento "${e.nome}"?\n\nEsta ação apagará o equipamento e todas as manutenções vinculadas a ele. Não será possível desfazer.`);
+    if(!ok) return;
+    try{
+        await api(`/api/equipamentos/${id}`,{method:'DELETE'});
+        if(state.current?.id===id) state.current=null;
+        await refresh();
+        closeModal('modal-detalhes');
+        showToast('Equipamento excluído com sucesso!','success');
+    }catch(e){showToast(e.message,'error')}
+}
+
+async function excluirManutencao(id){
+    const m=state.manutencoes.find(x=>x.id===id);
+    if(!m) return;
+    const ok=confirm(`Excluir esta manutenção de "${m.equipamentoNome}"?\n\nEsta ação não poderá ser desfeita.`);
+    if(!ok) return;
+    try{
+        await api(`/api/manutencoes/${id}`,{method:'DELETE'});
+        await refresh();
+        if(state.current?.id===m.equipamentoId && document.getElementById('modal-detalhes')?.classList.contains('active')){
+            await showDetalhes(m.equipamentoId);
+        }
+        showToast('Manutenção excluída com sucesso!','success');
+    }catch(e){showToast(e.message,'error')}
+}
+
 // ===== RENDERIZAÇÃO =====
 function renderEquipamentos(){
     const s=($('search-equipamentos')?.value||'').toLowerCase();
@@ -333,7 +363,7 @@ function renderEquipamentos(){
 
 function card(e){
     const icon={'Informática':'fa-laptop','Móveis':'fa-couch','Eletrônicos':'fa-tv','Máquinas e Ferramentas':'fa-cogs','Veículos':'fa-car','Equipamentos de Escritório':'fa-print','Outros':'fa-box'}[e.categoria]||'fa-box';
-    return `<div class="equipment-card" onclick="showDetalhes(${e.id})"><div class="eq-icon" style="background:var(--primary-light);color:var(--primary)"><i class="fas ${icon}"></i></div><div class="eq-info"><div class="eq-name">${esc(e.nome)}</div><div class="eq-meta"><span>▦ ${esc(e.barcode)}</span><span>⌂ ${esc(e.local)}</span><span>👤 ${esc(e.responsavel)}</span></div></div><span class="eq-status status-${e.status}">${e.status==='ativo'?'Ativo':e.status==='manutencao'?'Em Manutenção':'Baixado'}</span><div class="eq-actions" onclick="event.stopPropagation()"><button class="btn-edit" onclick="openEditar(${e.id})"><i class="fas fa-edit"></i></button>${e.status!=='baixado'?`<button class="btn-maint" onclick="openManutencao(${e.id})"><i class="fas fa-tools"></i></button><button class="btn-delete" onclick="openBaixa(${e.id})"><i class="fas fa-arrow-down"></i></button>`:''}</div></div>`;
+    return `<div class="equipment-card" onclick="showDetalhes(${e.id})"><div class="eq-icon" style="background:var(--primary-light);color:var(--primary)"><i class="fas ${icon}"></i></div><div class="eq-info"><div class="eq-name">${esc(e.nome)}</div><div class="eq-meta"><span>▦ ${esc(e.barcode)}</span><span>⌂ ${esc(e.local)}</span><span>👤 ${esc(e.responsavel)}</span></div></div><span class="eq-status status-${e.status}">${e.status==='ativo'?'Ativo':e.status==='manutencao'?'Em Manutenção':'Baixado'}</span><div class="eq-actions" onclick="event.stopPropagation()"><button class="btn-edit" onclick="openEditar(${e.id})"><i class="fas fa-edit"></i></button>${e.status!=='baixado'?`<button class="btn-maint" onclick="openManutencao(${e.id})"><i class="fas fa-tools"></i></button><button class="btn-delete" onclick="openBaixa(${e.id})" title="Dar baixa"><i class="fas fa-arrow-down"></i></button>`:''}<button class="btn-trash" onclick="excluirEquipamento(${e.id})" title="Excluir definitivamente"><i class="fas fa-trash"></i></button></div></div>`;
 }
 
 function renderManutencoes(){
@@ -344,7 +374,7 @@ function renderManutencoes(){
     ml.innerHTML=a.length?a.map(m=>{
         const eq=state.equipamentos.find(e=>e.id===m.equipamentoId);
         const clickable=eq?`onclick="showDetalhes(${m.equipamentoId})" style="cursor:pointer"`:'style="cursor:default"';
-        return `<div class="maintenance-card" ${clickable}><div class="maint-header"><span class="maint-type ${m.tipo}">${m.tipo==='preventiva'?'Preventiva':'Corretiva'}</span><span class="maint-date">${formatDateBR(m.data)}</span></div><b>${esc(m.equipamentoNome)}</b><div class="maint-desc">${esc(m.descricao)}</div><div class="maint-tech">👤 ${esc(m.tecnico)} ${m.custo?'| R$ '+esc(m.custo):''}${m.proximaManutencao?` | 📅 Próxima: ${formatDateBR(m.proximaManutencao)}`:''}</div></div>`;
+        return `<div class="maintenance-card" ${clickable}><div class="maint-header"><span class="maint-type ${m.tipo}">${m.tipo==='preventiva'?'Preventiva':'Corretiva'}</span><span class="maint-date">${formatDateBR(m.data)}</span></div><b>${esc(m.equipamentoNome)}</b><div class="maint-desc">${esc(m.descricao)}</div><div class="maint-tech">👤 ${esc(m.tecnico)} ${m.custo?'| R$ '+esc(m.custo):''}${m.proximaManutencao?` | 📅 Próxima: ${formatDateBR(m.proximaManutencao)}`:''}</div><div style="display:flex;justify-content:flex-end;margin-top:10px" onclick="event.stopPropagation()"><button class="maint-delete-btn" onclick="excluirManutencao(${m.id})" title="Excluir manutenção"><i class="fas fa-trash"></i> Excluir</button></div></div>`;
     }).join(''):`<div class="empty-state"><h3>Nenhuma manutenção registrada</h3></div>`;
 }
 

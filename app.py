@@ -219,6 +219,21 @@ def delete_eq(eid):
     if not e:return jsonify(error='Não encontrado.'),404
     Manutencao.query.filter_by(equipamento_id=eid).delete(); Historico.query.filter_by(equipamento_id=eid).delete(); db.session.delete(e); db.session.commit(); return jsonify(ok=True)
 
+@app.delete('/api/manutencoes/<int:mid>')
+@login_required
+def delete_maint(mid):
+    import json
+    m = db.session.get(Manutencao, mid)
+    if not m:
+        return jsonify(error='Manutenção não encontrada.'), 404
+    equipamento_id = m.equipamento_id
+    # A manutenção é removida definitivamente. O histórico geral permanece
+    # como registro de auditoria do que ocorreu no sistema.
+    db.session.delete(m)
+    db.session.commit()
+    return jsonify(ok=True, equipamentoId=equipamento_id)
+
+
 @app.get('/api/equipamentos/<int:eid>')
 @login_required
 def get_eq(eid):
