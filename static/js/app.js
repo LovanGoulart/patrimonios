@@ -1,4 +1,4 @@
-const state={equipamentos:[],manutencoes:[],historico:[],filter:'todos',current:null,scanner:null};
+const state={equipamentos:[],manutencoes:[],historico:[],lixeira:{equipamentos:[],manutencoes:[]},filter:'todos',current:null,scanner:null};
 const $=id=>document.getElementById(id);
 
 async function api(url,opt={}){
@@ -18,7 +18,7 @@ function sync(d){
     renderManutencoes();
     renderBaixados();
     renderRecentActivities();
-    updateFooterBadges();
+    renderLixeira();
 }
 
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
@@ -47,6 +47,7 @@ function switchTab(section){
 
     const footTab=document.querySelector(`.footer-item[data-section="${section}"]`);
     if(footTab) footTab.classList.add('active');
+    if(section==='lixeira') carregarLixeira();
 
     window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -322,40 +323,119 @@ async function salvarEdicao(){
     }catch(e){showToast(e.message,'error')}
 }
 
-// ===== EXCLUSÃO =====
+// ===== EXCLUSÃO / LIXEIRA =====
 async function excluirEquipamento(id){
     const e=state.equipamentos.find(x=>x.id===id);
     if(!e) return;
-    const ok=confirm(`Excluir definitivamente o equipamento "${e.nome}"?\n\nEsta ação apagará o equipamento e todas as manutenções vinculadas a ele. Não será possível desfazer.`);
+    const ok=confirm(`Mover o equipamento "${e.nome}" para a lixeira?\n\nO equipamento e as manutenções vinculadas poderão ser restaurados depois.`);
     if(!ok) return;
     try{
         await api(`/api/equipamentos/${id}`,{method:'DELETE'});
         if(state.current?.id===id) state.current=null;
         await refresh();
         closeModal('modal-detalhes');
-        showToast('Equipamento excluído com sucesso!','success');
+        showToast('Equipamento movido para a lixeira.','warning');
     }catch(e){showToast(e.message,'error')}
 }
 
 async function excluirManutencao(id){
     const m=state.manutencoes.find(x=>x.id===id);
     if(!m) return;
-    const ok=confirm(`Excluir esta manutenção de "${m.equipamentoNome}"?\n\nEsta ação não poderá ser desfeita.`);
+    const ok=confirm(`Mover esta manutenção de "${m.equipamentoNome}" para a lixeira?\n\nEla poderá ser restaurada depois.`);
     if(!ok) return;
     try{
         await api(`/api/manutencoes/${id}`,{method:'DELETE'});
         await refresh();
-        if(state.current?.id===m.equipamentoId && document.getElementById('modal-detalhes')?.classList.contains('active')){
-            await showDetalhes(m.equipamentoId);
-        }
-        showToast('Manutenção excluída com sucesso!','success');
+        if(state.current?.id===m.equipamentoId && document.getElementById('modal-detalhes')?.classList.contains('active')) await showDetalhes(m.equipamentoId);
+        showToast('Manutenção movida para a lixeira.','warning');
     }catch(e){showToast(e.message,'error')}
 }
 
+async function carregarLixeira(){
+    try{
+        const d=await api('/api/lixeira');
+        state.lixeira=d;
+        renderLixeira();
+    }catch(e){showToast(e.message,'error')}
+}
+
+async function restaurarEquipamento(id){
+    const e=state.lixeira.equipamentos.find(x=>x.id===id);
+    if(!e) return;
+    if(!confirm(`Restaurar o equipamento "${e.nome}"?\n\nAs manutenções que foram excluídas junto com ele também serão restauradas.`)) return;
+    try{ await api(`/api/lixeira/equipamentos/${id}/restaurar`,{method:'POST'}); await refresh(); await carregarLixeira(); showToast('Equipamento restaurado com sucesso!','success'); }
+    catch(e){showToast(e.message,'error')}
+}
+
+async function restaurarManutencao(id){
+    const m=state.lixeira.manutencoes.find(x=>x.id===id);
+    if(!m) return;
+    if(!confirm(`Restaurar esta manutenção de "${m.equipamentoNome}"?`)) return;
+    try{ await api(`/api/lixeira/manutencoes/${id}/restaurar`,{method:'POST'}); await refresh(); await carregarLixeira(); showToast('Manutenção restaurada com sucesso!','success'); }
+    catch(e){showToast(e.message,'error')}
+}
+
+async function excluirDefinitivamenteEquipamento(id){
+    const e=state.lixeira.equipamentos.find(x=>x.id===id);
+    if(!e) return;
+    if(!confirm(`APAGAR DEFINITIVAMENTE "${e.nome}"?\n\nEsta ação não poderá ser desfeita e também apagará as manutenções vinculadas.`)) return;
+    try{ await api(`/api/lixeira/equipamentos/${id}`,{method:'DELETE'}); await carregarLixeira(); showToast('Equipamento apagado definitivamente.','success'); }
+    catch(e){showToast(e.message,'error')}
+}
+
+async function excluirDefinitivamenteManutencao(id){
+    const m=state.lixeira.manutencoes.find(x=>x.id===id);
+    if(!m) return;
+    if(!confirm('APAGAR DEFINITIVAMENTE esta manutenção?\n\nEsta ação não poderá ser desfeita.')) return;
+    try{ await api(`/api/lixeira/manutencoes/${id}`,{method:'DELETE'}); await carregarLixeira(); showToast('Manutenção apagada definitivamente.','success'); }
+    catch(e){showToast(e.message,'error')}
+}
+
+function renderLixeira(){
+    const el=$('lixeira-list');
+    if(!el) return;
+    const eq=state.lixeira.equipamentos||[], ms=state.lixeira.manutencoes||[];
+    const total=eq.length+ms.length;
+    const count=$('nav-count-lixeira'); if(count) count.textContent=total;
+    if(!total){el.innerHTML=`<div class="empty-state"><div class="empty-icon">🗑️</div><h3>Lixeira vazia</h3><p>Itens excluídos aparecerão aqui e poderão ser recuperados.</p></div>`;return;}
+    let html='';
+    if(eq.length){
+        html+=`<div class="trash-group"><h3><i class="fas fa-desktop"></i> Equipamentos (${eq.length})</h3>`;
+        html+=eq.map(e=>`<div class="trash-card"><div class="trash-icon"><i class="fas fa-box"></i></div><div class="trash-info"><b>${esc(e.nome)}</b><div>${esc(e.marca)}${e.modelo?' · '+esc(e.modelo):''}</div><small>Patrimônio: ${esc(e.barcode)} · Excluído em ${formatDateTimeBR(e.excluidoEm)}</small></div><div class="trash-actions"><button class="btn btn-success btn-sm" onclick="restaurarEquipamento(${e.id})"><i class="fas fa-rotate-left"></i> Restaurar</button><button class="btn btn-danger btn-sm" onclick="excluirDefinitivamenteEquipamento(${e.id})"><i class="fas fa-trash"></i> Apagar</button></div></div>`).join('');
+        html+='</div>';
+    }
+    if(ms.length){
+        html+=`<div class="trash-group"><h3><i class="fas fa-tools"></i> Manutenções (${ms.length})</h3>`;
+        html+=ms.map(m=>`<div class="trash-card"><div class="trash-icon"><i class="fas fa-wrench"></i></div><div class="trash-info"><b>${esc(m.equipamentoNome)}</b><div>${m.tipo==='preventiva'?'Preventiva':'Corretiva'} · ${formatDateBR(m.data)} · ${esc(m.tecnico)}</div><small>${m.excluidoComEquipamento?'Excluída junto com o equipamento':'Excluída individualmente'} · ${formatDateTimeBR(m.excluidoEm)}</small></div><div class="trash-actions">${m.excluidoComEquipamento?'<span class="trash-note">Restaura com o equipamento</span>':`<button class="btn btn-success btn-sm" onclick="restaurarManutencao(${m.id})"><i class="fas fa-rotate-left"></i> Restaurar</button>`}<button class="btn btn-danger btn-sm" onclick="excluirDefinitivamenteManutencao(${m.id})"><i class="fas fa-trash"></i> Apagar</button></div></div>`).join('');
+        html+='</div>';
+    }
+    el.innerHTML=html;
+}
+
 // ===== RENDERIZAÇÃO =====
+function dataEquipamento(e){
+    // Prioriza a data de aquisição; quando não existir, usa o ID como desempate.
+    const t=e.dataAquisicao ? Date.parse(e.dataAquisicao+'T00:00:00') : NaN;
+    return Number.isNaN(t) ? 0 : t;
+}
+
+function ordenarEquipamentos(a){
+    const prioridade={manutencao:0,ativo:1,baixado:2};
+    return [...a].sort((x,y)=>{
+        // Na aba Todos: manutenção primeiro, ativos depois e baixados por último.
+        const px=prioridade[x.status] ?? 3;
+        const py=prioridade[y.status] ?? 3;
+        if(px!==py) return px-py;
+        const dx=dataEquipamento(x), dy=dataEquipamento(y);
+        if(dx!==dy) return dy-dx;
+        return (y.id||0)-(x.id||0);
+    });
+}
+
 function renderEquipamentos(){
     const s=($('search-equipamentos')?.value||'').toLowerCase();
     let a=state.equipamentos.filter(e=>(state.filter==='todos'||e.status===state.filter)&&[e.nome,e.marca,e.barcode,e.local,e.responsavel].some(v=>String(v).toLowerCase().includes(s)));
+    a=ordenarEquipamentos(a);
     const el=$('equipamentos-list');
     if(!el) return;
     el.innerHTML=a.length?a.map(card).join(''):`<div class="empty-state"><div class="empty-icon">📦</div><h3>Nenhum equipamento encontrado</h3><p>Escaneie um código ou digite manualmente.</p></div>`;
@@ -405,16 +485,6 @@ function updateStats(){
     const nce=$('nav-count-eq'); if(nce) nce.textContent=a.filter(e=>e.status!=='baixado').length;
     const ncm=$('nav-count-maint'); if(ncm) ncm.textContent=state.manutencoes.length;
     const ncb=$('nav-count-baixa'); if(ncb) ncb.textContent=a.filter(e=>e.status==='baixado').length;
-}
-
-function updateFooterBadges(){
-    const a=state.equipamentos;
-    const fce=$('foot-count-eq');
-    if(fce){const c=a.filter(e=>e.status!=='baixado').length; fce.textContent=c; fce.style.display=c>0?'flex':'none';}
-    const fcm=$('foot-count-maint');
-    if(fcm){const c=state.manutencoes.length; fcm.textContent=c; fcm.style.display=c>0?'flex':'none';}
-    const fcb=$('foot-count-baixa');
-    if(fcb){const c=a.filter(e=>e.status==='baixado').length; fcb.textContent=c; fcb.style.display=c>0?'flex':'none';}
 }
 
 // ===== FILTROS =====

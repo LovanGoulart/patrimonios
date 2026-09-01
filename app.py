@@ -40,6 +40,7 @@ class Equipamento(db.Model):
     status = db.Column(db.String(30), default='ativo', index=True)
     baixa_json = db.Column(db.Text, default='')
     data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True, index=True)
 
 class Manutencao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +52,8 @@ class Manutencao(db.Model):
     custo = db.Column(db.String(40), default='')
     proxima_manutencao = db.Column(db.String(20), default='')
     data_registro = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True, index=True)
+    deleted_with_equipment = db.Column(db.Boolean, default=False, nullable=False)
 
 class Historico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -58,6 +61,21 @@ class Historico(db.Model):
     acao = db.Column(db.String(40), nullable=False)
     detalhes = db.Column(db.Text, default='')
     data = db.Column(db.DateTime, default=datetime.utcnow)
+
+def ensure_trash_columns():
+    # Migração simples para bancos SQLite existentes.
+    from sqlalchemy import inspect
+    inspector = inspect(db.engine)
+    for table, columns in {
+        'equipamento': {'deleted_at': 'DATETIME'},
+        'manutencao': {'deleted_at': 'DATETIME', 'deleted_with_equipment': 'BOOLEAN DEFAULT 0'}
+    }.items():
+        existing = {c['name'] for c in inspector.get_columns(table)} if inspector.has_table(table) else set()
+        for name, typ in columns.items():
+            if name not in existing:
+                db.session.execute(db.text(f'ALTER TABLE {table} ADD COLUMN {name} {typ}'))
+    db.session.commit()
+
 
 def eq_json(e):
     import json
@@ -164,8 +182,8 @@ def service_worker():
 @app.get('/api/bootstrap')
 @login_required
 def bootstrap():
-    return jsonify(equipamentos=[eq_json(e) for e in Equipamento.query.order_by(Equipamento.id.desc()).all()],
-                   manutencoes=[maint_json(m) for m in Manutencao.query.order_by(Manutencao.id.desc()).all()],
+    return jsonify(equipamentos=[eq_json(e) for e in Equipamento.query.filter(Equipamento.deleted_at.is_(None)).order_by(Equipamento.id.desc()).all()],
+                   manutencoes=[maint_json(m) for m in Manutencao.query.filter(Manutencao.deleted_at.is_(None)).join(Equipamento, Manutencao.equipamento_id == Equipamento.id).filter(Equipamento.deleted_at.is_(None)).order_by(Manutencao.id.desc()).all()],
                    historico=[hist_json(h) for h in Historico.query.order_by(Historico.id.desc()).limit(100).all()])
 
 @app.post('/api/equipamentos')
@@ -175,7 +193,7 @@ def create_eq():
     d=request.get_json() or {}
     required=['barcode','nome','marca','categoria','local','responsavel']
     if any(not str(d.get(k,'')).strip() for k in required): return jsonify(error='Preencha os campos obrigatórios.'),400
-    if Equipamento.query.filter_by(barcode=d['barcode'].strip()).first(): return jsonify(error='Já existe equipamento com este código.'),409
+    if Equipamento.query.filter(Equipamento.barcode == d['barcode'].strip(), Equipamento.deleted_at.is_(None)).first(): return jsonify(error='Já existe equipamento com este código.'),409
     e=Equipamento(barcode=d['barcode'].strip(),nome=d['nome'].strip(),marca=d['marca'].strip(),modelo=d.get('modelo','').strip(),serie=d.get('serie','').strip(),categoria=d['categoria'],local=d['local'].strip(),responsavel=d['responsavel'].strip(),data_aquisicao=d.get('dataAquisicao',''),valor=d.get('valor',''),observacoes=d.get('observacoes','').strip(),status='ativo')
     db.session.add(e); db.session.flush(); db.session.add(Historico(equipamento_id=e.id,acao='cadastro',detalhes=json.dumps({'nome':e.nome,'barcode':e.barcode},ensure_ascii=False))); db.session.commit()
     return jsonify(eq_json(e)),201
@@ -216,36 +234,97 @@ def baixa(eid):
 @login_required
 def delete_eq(eid):
     e=db.session.get(Equipamento,eid)
-    if not e:return jsonify(error='Não encontrado.'),404
-    Manutencao.query.filter_by(equipamento_id=eid).delete(); Historico.query.filter_by(equipamento_id=eid).delete(); db.session.delete(e); db.session.commit(); return jsonify(ok=True)
+    if not e or e.deleted_at is not None:return jsonify(error='Equipamento não encontrado.'),404
+    agora=datetime.utcnow()
+    e.deleted_at=agora
+    # As manutenções são enviadas para a lixeira junto com o equipamento.
+    Manutencao.query.filter_by(equipamento_id=eid).filter(Manutencao.deleted_at.is_(None)).update({
+        'deleted_at': agora, 'deleted_with_equipment': True
+    }, synchronize_session=False)
+    db.session.commit()
+    return jsonify(ok=True)
 
 @app.delete('/api/manutencoes/<int:mid>')
 @login_required
 def delete_maint(mid):
-    import json
-    m = db.session.get(Manutencao, mid)
-    if not m:
-        return jsonify(error='Manutenção não encontrada.'), 404
-    equipamento_id = m.equipamento_id
-    # A manutenção é removida definitivamente. O histórico geral permanece
-    # como registro de auditoria do que ocorreu no sistema.
+    m=db.session.get(Manutencao,mid)
+    if not m or m.deleted_at is not None:return jsonify(error='Manutenção não encontrada.'),404
+    m.deleted_at=datetime.utcnow()
+    m.deleted_with_equipment=False
+    db.session.commit()
+    return jsonify(ok=True, equipamentoId=m.equipamento_id)
+
+@app.get('/api/lixeira')
+@login_required
+def trash():
+    equipamentos=Equipamento.query.filter(Equipamento.deleted_at.isnot(None)).order_by(Equipamento.deleted_at.desc()).all()
+    manutencoes=Manutencao.query.filter(Manutencao.deleted_at.isnot(None)).order_by(Manutencao.deleted_at.desc()).all()
+    return jsonify(
+        equipamentos=[dict(**eq_json(e), excluidoEm=e.deleted_at.isoformat() if e.deleted_at else '') for e in equipamentos],
+        manutencoes=[dict(**maint_json(m), excluidoEm=m.deleted_at.isoformat() if m.deleted_at else '', excluidoComEquipamento=bool(m.deleted_with_equipment)) for m in manutencoes]
+    )
+
+@app.post('/api/lixeira/equipamentos/<int:eid>/restaurar')
+@login_required
+def restore_eq(eid):
+    e=db.session.get(Equipamento,eid)
+    if not e or e.deleted_at is None:return jsonify(error='Equipamento não encontrado na lixeira.'),404
+    conflito=Equipamento.query.filter(Equipamento.barcode==e.barcode, Equipamento.id!=eid, Equipamento.deleted_at.is_(None)).first()
+    if conflito:return jsonify(error=f'Não é possível restaurar: já existe um equipamento ativo com o código {e.barcode}.'),409
+    e.deleted_at=None
+    # Restaura apenas as manutenções que foram para a lixeira por causa deste equipamento.
+    Manutencao.query.filter_by(equipamento_id=eid, deleted_with_equipment=True).update({
+        'deleted_at': None, 'deleted_with_equipment': False
+    }, synchronize_session=False)
+    db.session.commit()
+    return jsonify(ok=True)
+
+@app.post('/api/lixeira/manutencoes/<int:mid>/restaurar')
+@login_required
+def restore_maint(mid):
+    m=db.session.get(Manutencao,mid)
+    if not m or m.deleted_at is None:return jsonify(error='Manutenção não encontrada na lixeira.'),404
+    e=db.session.get(Equipamento,m.equipamento_id)
+    if not e or e.deleted_at is not None:return jsonify(error='Restaure o equipamento vinculado antes desta manutenção.'),409
+    m.deleted_at=None
+    m.deleted_with_equipment=False
+    db.session.commit()
+    return jsonify(ok=True)
+
+@app.delete('/api/lixeira/equipamentos/<int:eid>')
+@login_required
+def purge_eq(eid):
+    e=db.session.get(Equipamento,eid)
+    if not e or e.deleted_at is None:return jsonify(error='Equipamento não encontrado na lixeira.'),404
+    Manutencao.query.filter_by(equipamento_id=eid).delete()
+    Historico.query.filter_by(equipamento_id=eid).delete()
+    db.session.delete(e)
+    db.session.commit()
+    return jsonify(ok=True)
+
+@app.delete('/api/lixeira/manutencoes/<int:mid>')
+@login_required
+def purge_maint(mid):
+    m=db.session.get(Manutencao,mid)
+    if not m or m.deleted_at is None:return jsonify(error='Manutenção não encontrada na lixeira.'),404
     db.session.delete(m)
     db.session.commit()
-    return jsonify(ok=True, equipamentoId=equipamento_id)
+    return jsonify(ok=True)
 
 
 @app.get('/api/equipamentos/<int:eid>')
 @login_required
 def get_eq(eid):
     e=db.session.get(Equipamento,eid)
-    return (jsonify(equipamento=eq_json(e),manutencoes=[maint_json(m) for m in Manutencao.query.filter_by(equipamento_id=eid).all()],historico=[hist_json(h) for h in Historico.query.filter_by(equipamento_id=eid).order_by(Historico.id.desc()).all()]) if e else (jsonify(error='Não encontrado.'),404))
+    if not e or e.deleted_at is not None: return jsonify(error='Não encontrado.'),404
+    return jsonify(equipamento=eq_json(e),manutencoes=[maint_json(m) for m in Manutencao.query.filter_by(equipamento_id=eid).filter(Manutencao.deleted_at.is_(None)).all()],historico=[hist_json(h) for h in Historico.query.filter_by(equipamento_id=eid).order_by(Historico.id.desc()).all()])
 
 @app.get('/api/export')
 @login_required
 def export_csv():
     import csv, io
     out=io.StringIO(); w=csv.writer(out); w.writerow(['Código','Nome','Marca','Modelo','Categoria','Local','Responsável','Status','Data Aquisição','Valor'])
-    for e in Equipamento.query.order_by(Equipamento.id).all():w.writerow([e.barcode,e.nome,e.marca,e.modelo,e.categoria,e.local,e.responsavel,e.status,e.data_aquisicao,e.valor])
+    for e in Equipamento.query.filter(Equipamento.deleted_at.is_(None)).order_by(Equipamento.id).all():w.writerow([e.barcode,e.nome,e.marca,e.modelo,e.categoria,e.local,e.responsavel,e.status,e.data_aquisicao,e.valor])
     return app.response_class('\ufeff'+out.getvalue(),mimetype='text/csv',headers={'Content-Disposition':'attachment; filename=patrimonio_equipamentos.csv'})
 
 @app.get('/api/manutencoes/proximas')
@@ -255,7 +334,7 @@ def manutencoes_proximas():
     hoje = datetime.now().date()
     amanha = hoje + timedelta(days=1)
     proximas = []
-    for m in Manutencao.query.filter(Manutencao.proxima_manutencao != '').all():
+    for m in Manutencao.query.filter(Manutencao.proxima_manutencao != '', Manutencao.deleted_at.is_(None)).all():
         try:
             data_prox = datetime.strptime(m.proxima_manutencao, '%Y-%m-%d').date()
             if data_prox <= amanha:
@@ -278,4 +357,5 @@ def manutencoes_proximas():
 if __name__=='__main__':
     with app.app_context():
         db.create_all()
+        ensure_trash_columns()
     app.run(host='0.0.0.0',port=int(os.getenv('PORT',5000)),debug=True)
