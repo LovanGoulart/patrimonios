@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -199,7 +199,7 @@ def create_maint(eid):
     d=request.get_json() or {}
     if not d.get('data') or not d.get('tecnico','').strip() or not d.get('descricao','').strip():return jsonify(error='Preencha os campos obrigatórios.'),400
     m=Manutencao(equipamento_id=eid,tipo=d.get('tipo','preventiva'),data=d['data'],tecnico=d['tecnico'].strip(),descricao=d['descricao'].strip(),custo=d.get('custo',''),proxima_manutencao=d.get('proximaManutencao',''))
-    e.status='manutencao'; db.session.add(m); db.session.flush(); db.session.add(Historico(equipamento_id=eid,acao='manutencao',detalhes=json.dumps({'tipo':m.tipo,'tecnico':m.tecnico},ensure_ascii=False))); db.session.commit(); return jsonify(maint_json(m)),201
+    db.session.add(m); db.session.flush(); db.session.add(Historico(equipamento_id=eid,acao='manutencao',detalhes=json.dumps({'tipo':m.tipo,'tecnico':m.tecnico},ensure_ascii=False))); db.session.commit(); return jsonify(maint_json(m)),201
 
 @app.post('/api/equipamentos/<int:eid>/baixa')
 @login_required
@@ -232,6 +232,33 @@ def export_csv():
     out=io.StringIO(); w=csv.writer(out); w.writerow(['Código','Nome','Marca','Modelo','Categoria','Local','Responsável','Status','Data Aquisição','Valor'])
     for e in Equipamento.query.order_by(Equipamento.id).all():w.writerow([e.barcode,e.nome,e.marca,e.modelo,e.categoria,e.local,e.responsavel,e.status,e.data_aquisicao,e.valor])
     return app.response_class('\ufeff'+out.getvalue(),mimetype='text/csv',headers={'Content-Disposition':'attachment; filename=patrimonio_equipamentos.csv'})
+
+@app.get('/api/manutencoes/proximas')
+@login_required
+def manutencoes_proximas():
+    from datetime import datetime, timedelta, timedelta
+    hoje = datetime.now().date()
+    amanha = hoje + timedelta(days=1)
+    proximas = []
+    for m in Manutencao.query.filter(Manutencao.proxima_manutencao != '').all():
+        try:
+            data_prox = datetime.strptime(m.proxima_manutencao, '%Y-%m-%d').date()
+            if data_prox <= amanha:
+                e = db.session.get(Equipamento, m.equipamento_id)
+                proximas.append({
+                    'id': m.id,
+                    'equipamentoId': m.equipamento_id,
+                    'equipamentoNome': e.nome if e else 'Equipamento removido',
+                    'equipamentoBarcode': e.barcode if e else '',
+                    'data': m.data,
+                    'proximaManutencao': m.proxima_manutencao,
+                    'tecnico': m.tecnico,
+                    'tipo': m.tipo,
+                    'diasRestantes': (data_prox - hoje).days
+                })
+        except ValueError:
+            continue
+    return jsonify(proximas=sorted(proximas, key=lambda x: x['diasRestantes']))
 
 if __name__=='__main__':
     with app.app_context():

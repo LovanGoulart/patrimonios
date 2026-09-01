@@ -327,6 +327,15 @@
         .maintenance-card {
             background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
             padding: 16px 20px; margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .maintenance-card[onclick] {
+            cursor: pointer;
+        }
+        .maintenance-card[onclick]:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
         }
         .maintenance-card .maint-header {
             display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
@@ -473,6 +482,9 @@
                 <button class="header-btn primary" onclick="openScanner()" title="Novo scan">
                     <i class="fas fa-plus"></i> <span>Novo Scan</span>
                 </button>
+                <button class="header-btn" onclick="limparNotificacoesManutencao();showToast('Notificações de manutenção limpas!','info')" title="Limpar notificações de manutenção">
+                    <i class="fas fa-bell-slash"></i> <span>Limpar</span>
+                </button>
                 <form method="post" action="/logout" style="display:inline">
                     <button class="header-btn" type="submit" title="Sair"><i class="fas fa-right-from-bracket"></i> <span>Sair</span></button>
                 </form>
@@ -483,7 +495,7 @@
                 <i class="fas fa-chart-pie"></i> Dashboard
             </button>
             <button class="nav-tab" data-section="equipamentos" onclick="switchTab('equipamentos')">
-                <i class="fas fa-desktop"></i> Equipamentos
+                <i class="fas fa-desktop"></i> Equipamentos <span class="badge" id="nav-count-eq">0</span>
             </button>
             <button class="nav-tab" data-section="manutencoes" onclick="switchTab('manutencoes')">
                 <i class="fas fa-tools"></i> Manutenções <span class="badge" id="nav-count-maint">0</span>
@@ -587,6 +599,7 @@
             <button class="footer-item" data-section="equipamentos" onclick="switchTab('equipamentos')">
                 <i class="fas fa-desktop"></i>
                 <span>Equip.</span>
+                <span class="badge" id="foot-count-eq" style="display:none">0</span>
             </button>
             <button class="footer-item scan-btn" onclick="openScanner()" title="Novo Scan">
                 <i class="fas fa-plus"></i>

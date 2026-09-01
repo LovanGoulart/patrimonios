@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const hoje=new Date().toISOString().slice(0,10);
     ['maint-data','baixa-data','cad-data-aquisicao'].forEach(id=>{if($(id))$(id).value=hoje});
     if($('manual-barcode')) $('manual-barcode').addEventListener('keypress',e=>{if(e.key==='Enter')processManualBarcode()});
+    // Verifica manutenções próximas a cada 5 minutos
+    verificarManutencoesProximas();
+    setInterval(verificarManutencoesProximas, 300000);
 });
 
 // ===== NAVEGAÇÃO =====
@@ -338,7 +341,11 @@ function renderManutencoes(){
     const a=state.manutencoes.filter(m=>(m.equipamentoNome+' '+m.tecnico+' '+m.descricao).toLowerCase().includes(s));
     const ml=$('manutencoes-list');
     if(!ml) return;
-    ml.innerHTML=a.length?a.map(m=>`<div class="maintenance-card"><div class="maint-header"><span class="maint-type ${m.tipo}">${m.tipo==='preventiva'?'Preventiva':'Corretiva'}</span><span class="maint-date">${formatDateBR(m.data)}</span></div><b>${esc(m.equipamentoNome)}</b><div class="maint-desc">${esc(m.descricao)}</div><div class="maint-tech">👤 ${esc(m.tecnico)} ${m.custo?'| R$ '+esc(m.custo):''}</div></div>`).join(''):`<div class="empty-state"><h3>Nenhuma manutenção registrada</h3></div>`;
+    ml.innerHTML=a.length?a.map(m=>{
+        const eq=state.equipamentos.find(e=>e.id===m.equipamentoId);
+        const clickable=eq?`onclick="showDetalhes(${m.equipamentoId})" style="cursor:pointer"`:'style="cursor:default"';
+        return `<div class="maintenance-card" ${clickable}><div class="maint-header"><span class="maint-type ${m.tipo}">${m.tipo==='preventiva'?'Preventiva':'Corretiva'}</span><span class="maint-date">${formatDateBR(m.data)}</span></div><b>${esc(m.equipamentoNome)}</b><div class="maint-desc">${esc(m.descricao)}</div><div class="maint-tech">👤 ${esc(m.tecnico)} ${m.custo?'| R$ '+esc(m.custo):''}${m.proximaManutencao?` | 📅 Próxima: ${formatDateBR(m.proximaManutencao)}`:''}</div></div>`;
+    }).join(''):`<div class="empty-state"><h3>Nenhuma manutenção registrada</h3></div>`;
 }
 
 function renderBaixados(){
@@ -365,7 +372,7 @@ function updateStats(){
     const sm=$('stat-manutencao'); if(sm) sm.textContent=a.filter(e=>e.status==='manutencao').length;
     const sb=$('stat-baixado'); if(sb) sb.textContent=a.filter(e=>e.status==='baixado').length;
     const smt=$('stat-manutencoes-total'); if(smt) smt.textContent=state.manutencoes.length;
-    const nce=$('nav-count-eq'); if(nce){nce.textContent=''; nce.style.display='none';}
+    const nce=$('nav-count-eq'); if(nce) nce.textContent=a.filter(e=>e.status!=='baixado').length;
     const ncm=$('nav-count-maint'); if(ncm) ncm.textContent=state.manutencoes.length;
     const ncb=$('nav-count-baixa'); if(ncb) ncb.textContent=a.filter(e=>e.status==='baixado').length;
 }
@@ -373,7 +380,7 @@ function updateStats(){
 function updateFooterBadges(){
     const a=state.equipamentos;
     const fce=$('foot-count-eq');
-    if(fce){fce.style.display='none';}
+    if(fce){const c=a.filter(e=>e.status!=='baixado').length; fce.textContent=c; fce.style.display=c>0?'flex':'none';}
     const fcm=$('foot-count-maint');
     if(fcm){const c=state.manutencoes.length; fcm.textContent=c; fcm.style.display=c>0?'flex':'none';}
     const fcb=$('foot-count-baixa');
@@ -402,6 +409,36 @@ function showToast(message,type='success'){
     t.innerHTML=`<div class="toast-icon"><i class="fas ${icons[type]||icons.success}"></i></div><div class="toast-content"><div class="toast-title">${titles[type]||titles.success}</div><div class="toast-message">${esc(message)}</div></div>`;
     c.appendChild(t);
     setTimeout(()=>t.remove(),4500);
+}
+
+// ===== NOTIFICAÇÕES DE MANUTENÇÃO =====
+let notificacoesManutencao = JSON.parse(localStorage.getItem('patrimonio_notificacoes')||'[]');
+
+async function verificarManutencoesProximas(){
+    try{
+        const d=await api('/api/manutencoes/proximas');
+        if(!d.proximas||!d.proximas.length) return;
+        const hoje=new Date().toISOString().slice(0,10);
+        d.proximas.forEach(m=>{
+            const chave=`${hoje}-${m.id}`;
+            if(notificacoesManutencao.includes(chave)) return;
+            const msg=m.diasRestantes<=0?`⚠️ Manutenção de "${esc(m.equipamentoNome)}" venceu hoje!`:`📅 Manutenção de "${esc(m.equipamentoNome)}" vence em ${m.diasRestantes} dia(s)`;
+            showToast(msg,'warning');
+            notificacoesManutencao.push(chave);
+        });
+        // Limpa notificações antigas (mantém só as dos últimos 7 dias)
+        const limite=new Date(); limite.setDate(limite.getDate()-7);
+        notificacoesManutencao=notificacoesManutencao.filter(k=>{
+            const data=k.split('-')[0];
+            return new Date(data)>=limite;
+        });
+        localStorage.setItem('patrimonio_notificacoes',JSON.stringify(notificacoesManutencao));
+    }catch(e){/*silencioso*/}
+}
+
+function limparNotificacoesManutencao(){
+    notificacoesManutencao=[];
+    localStorage.removeItem('patrimonio_notificacoes');
 }
 
 function exportData(){window.location='/api/export'}
