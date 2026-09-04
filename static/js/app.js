@@ -119,12 +119,15 @@ function processManualBarcode(){
     processBarcode(val);
 }
 
+// ===== NOVO FLUXO: processBarcode mostra modal de ações =====
 function processBarcode(barcode){
     const e=state.equipamentos.find(x=>x.barcode===barcode);
     state.current=e||{barcode};
     if(e){
-        showDetalhes(e.id);
+        // Equipamento existe: mostra modal de ações
+        showActionsModal(e);
     } else {
+        // Novo equipamento: abre cadastro
         const cb=$('cad-barcode');
         if(cb) cb.value=barcode;
         const mc=$('modal-cadastro');
@@ -133,10 +136,90 @@ function processBarcode(barcode){
     }
 }
 
+// ===== MODAL DE AÇÕES (após scan) =====
+function showActionsModal(e){
+    const nameEl=$('action-eq-name');
+    const barcodeEl=$('action-eq-barcode');
+    if(nameEl) nameEl.textContent=e.nome;
+    if(barcodeEl) barcodeEl.textContent='Código: '+e.barcode;
+
+    // Atualiza botões conforme status
+    const grid=$('action-grid');
+    if(grid){
+        let html='';
+
+        // Botão Ver Detalhes (sempre disponível)
+        html+=`<button class="action-btn blue" onclick="actionVerDetalhes()">
+            <div class="action-icon"><i class="fas fa-eye"></i></div>
+            <div class="action-content">
+                <div class="action-title">Ver Detalhes</div>
+                <div class="action-desc">Visualizar histórico completo</div>
+            </div>
+        </button>`;
+
+        // Botão Manutenção (somente se não estiver baixado)
+        if(e.status!=='baixado'){
+            html+=`<button class="action-btn green" onclick="actionRenovarManutencao()">
+                <div class="action-icon"><i class="fas fa-tools"></i></div>
+                <div class="action-content">
+                    <div class="action-title">Enviar para Manutenção</div>
+                    <div class="action-desc">Altera status para "Em Manutenção"</div>
+                </div>
+            </button>`;
+        }
+
+        // Botão Dar Baixa (somente se não estiver baixado)
+        if(e.status!=='baixado'){
+            html+=`<button class="action-btn orange" onclick="actionDarBaixa()">
+                <div class="action-icon"><i class="fas fa-arrow-down"></i></div>
+                <div class="action-content">
+                    <div class="action-title">Dar Baixa</div>
+                    <div class="action-desc">Remover equipamento do ativo</div>
+                </div>
+            </button>`;
+        }
+
+        // Botão Restaurar (se estiver em manutenção)
+        if(e.status==='manutencao'){
+            html+=`<button class="action-btn green" onclick="actionRestaurarAtivo()">
+                <div class="action-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="action-content">
+                    <div class="action-title">Restaurar para Ativo</div>
+                    <div class="action-desc">Voltar status para "Ativo"</div>
+                </div>
+            </button>`;
+        }
+
+        grid.innerHTML=html;
+    }
+
+    const ma=$('modal-actions');
+    if(ma) ma.classList.add('active');
+}
+
 // ===== AÇÕES =====
-function actionRenovarManutencao(){closeModal('modal-actions');if(state.current&&state.current.id) openManutencao(state.current.id)}
-function actionDarBaixa(){closeModal('modal-actions');if(state.current&&state.current.id) openBaixa(state.current.id)}
-function actionVerDetalhes(){closeModal('modal-actions');if(state.current&&state.current.id) showDetalhes(state.current.id)}
+function actionRenovarManutencao(){
+    closeModal('modal-actions');
+    if(state.current&&state.current.id) openManutencaoRapida(state.current.id);
+}
+function actionDarBaixa(){
+    closeModal('modal-actions');
+    if(state.current&&state.current.id) openBaixa(state.current.id);
+}
+function actionVerDetalhes(){
+    closeModal('modal-actions');
+    if(state.current&&state.current.id) showDetalhes(state.current.id);
+}
+
+async function actionRestaurarAtivo(){
+    closeModal('modal-actions');
+    if(!state.current||!state.current.id) return;
+    try{
+        await api(`/api/equipamentos/${state.current.id}`,{method:'PUT',body:JSON.stringify({status:'ativo'})});
+        await refresh();
+        showToast('Equipamento restaurado para ativo!');
+    }catch(e){showToast(e.message,'error')}
+}
 
 // ===== CADASTRO =====
 async function salvarEquipamento(){
@@ -169,7 +252,44 @@ function clearCadastroForm(){
     const cd=$('cad-data-aquisicao'); if(cd) cd.value=new Date().toISOString().slice(0,10);
 }
 
-// ===== MANUTENÇÃO =====
+// ===== MANUTENÇÃO RÁPIDA (após scan) =====
+function openManutencaoRapida(id){
+    state.current=state.equipamentos.find(e=>e.id===id);
+    if(!state.current) return;
+    const me=$('maint-rapida-equipamento');
+    if(me) me.value=state.current.nome;
+    const mm=$('modal-manutencao-rapida');
+    if(mm) mm.classList.add('active');
+}
+
+async function salvarManutencaoRapida(){
+    const d={
+        tipo:'correctiva',
+        data:new Date().toISOString().slice(0,10),
+        tecnico:$('maint-rapida-tecnico')?.value.trim()||'',
+        descricao:$('maint-rapida-descricao')?.value.trim()||'',
+        custo:'',
+        proximaManutencao:''
+    };
+    if(!d.tecnico||!d.descricao) return showToast('Preencha todos os campos obrigatórios!','error');
+    if(!state.current||!state.current.id) return;
+    try{
+        // Primeiro registra a manutenção
+        await api(`/api/equipamentos/${state.current.id}/manutencoes`,{method:'POST',body:JSON.stringify(d)});
+        // Depois altera o status para manutenção
+        await api(`/api/equipamentos/${state.current.id}`,{method:'PUT',body:JSON.stringify({status:'manutencao'})});
+        closeModal('modal-manutencao-rapida');
+        clearManutencaoRapidaForm();
+        await refresh();
+        showToast('Equipamento enviado para manutenção!','warning');
+    }catch(e){showToast(e.message,'error')}
+}
+
+function clearManutencaoRapidaForm(){
+    ['maint-rapida-tecnico','maint-rapida-descricao'].forEach(id=>{const el=$(id);if(el)el.value=''});
+}
+
+// ===== MANUTENÇÃO COMPLETA (via tela de detalhes) =====
 function openManutencao(id){
     state.current=state.equipamentos.find(e=>e.id===id);
     if(!state.current) return;
@@ -414,7 +534,6 @@ function renderLixeira(){
 
 // ===== RENDERIZAÇÃO =====
 function dataEquipamento(e){
-    // Prioriza a data de aquisição; quando não existir, usa o ID como desempate.
     const t=e.dataAquisicao ? Date.parse(e.dataAquisicao+'T00:00:00') : NaN;
     return Number.isNaN(t) ? 0 : t;
 }
@@ -422,7 +541,6 @@ function dataEquipamento(e){
 function ordenarEquipamentos(a){
     const prioridade={manutencao:0,ativo:1,baixado:2};
     return [...a].sort((x,y)=>{
-        // Na aba Todos: manutenção primeiro, ativos depois e baixados por último.
         const px=prioridade[x.status] ?? 3;
         const py=prioridade[y.status] ?? 3;
         if(px!==py) return px-py;
@@ -526,7 +644,6 @@ async function verificarManutencoesProximas(){
             showToast(msg,'warning');
             notificacoesManutencao.push(chave);
         });
-        // Limpa notificações antigas (mantém só as dos últimos 7 dias)
         const limite=new Date(); limite.setDate(limite.getDate()-7);
         notificacoesManutencao=notificacoesManutencao.filter(k=>{
             const data=k.split('-')[0];
