@@ -1,0 +1,1230 @@
+﻿linha;patrimonio;nome;motivo
+2;37;IMPRESSORA;Campos obrigatórios vazios: Responsável
+3;40;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+4;49;MAQ.ESCREVER;Campos obrigatórios vazios: Marca
+5;54;MONITOR;Campos obrigatórios vazios: Responsável
+6;64;IMPRESSORA;Campos obrigatórios vazios: Responsável
+7;82;IMPRESSORA;Campos obrigatórios vazios: Responsável
+8;86;IMPRESSORA;Campos obrigatórios vazios: Responsável
+9;106;MONITOR;Campos obrigatórios vazios: Responsável
+10;131;MONITOR;Campos obrigatórios vazios: Responsável
+11;144;MONITOR;Campos obrigatórios vazios: Responsável
+12;160;MONITOR;Campos obrigatórios vazios: Responsável
+13;194;MONITOR;Campos obrigatórios vazios: Responsável
+14;196;IMPRESSORA;Campos obrigatórios vazios: Responsável
+15;199;PC;Campos obrigatórios vazios: Marca, Responsável
+16;206;PC;Campos obrigatórios vazios: Marca, Responsável
+17;207;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+18;209;NOBREAK;Campos obrigatórios vazios: Marca, Responsável
+19;279;PC;Campos obrigatórios vazios: Responsável
+20;872;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+21;1022;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+22;1030;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+23;1142;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+24;1146;PC;Campos obrigatórios vazios: Responsável
+25;1151;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+26;1162;MONITOR;Campos obrigatórios vazios: Responsável
+27;1163;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+28;1181;SCANNER;Campos obrigatórios vazios: Responsável
+29;1183;PC;Campos obrigatórios vazios: Responsável
+30;1185;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+31;1192;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+32;1199;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+33;1300;ESTABILIZADOR;Campos obrigatórios vazios: Responsável
+34;1507;MONITOR;Campos obrigatórios vazios: Responsável
+35;1508;PC;Campos obrigatórios vazios: Marca, Responsável
+36;1613;PC;Campos obrigatórios vazios: Responsável
+37;1623;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+38;1650;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+39;1661;SCANNER;Campos obrigatórios vazios: Responsável
+40;1663;PC;Campos obrigatórios vazios: Marca, Responsável
+41;1668;PC;Campos obrigatórios vazios: Responsável
+42;2112;NOTEBOOK;Campos obrigatórios vazios: Responsável
+43;2196;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+44;2198;MONITOR;Campos obrigatórios vazios: Responsável
+45;2199;MONITOR;Campos obrigatórios vazios: Responsável
+46;2207;PROJETOR;Campos obrigatórios vazios: Responsável
+47;2213;IMPRESSORA;Campos obrigatórios vazios: Marca, Responsável
+48;2228;MONITOR;Campos obrigatórios vazios: Responsável
+49;2230;MONITOR;Campos obrigatórios vazios: Responsável
+50;2232;ESTABILIZADOR;Campos obrigatórios vazios: Responsável
+51;2239;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+52;2241;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+53;2244;IMPRESSORA C.FISCAL;Campos obrigatórios vazios: Marca, Responsável
+54;2272;MONITOR;Campos obrigatórios vazios: Responsável
+55;2273;MONITOR;Campos obrigatórios vazios: Responsável
+56;2274;MONITOR;Campos obrigatórios vazios: Responsável
+57;2275;MONITOR;Campos obrigatórios vazios: Responsável
+58;2276;TV;Campos obrigatórios vazios: Responsável
+59;2282;MONITOR;Campos obrigatórios vazios: Responsável
+60;2284;PC;Campos obrigatórios vazios: Responsável
+61;2286;MONITOR;Campos obrigatórios vazios: Responsável
+62;2287;MONITOR;Campos obrigatórios vazios: Responsável
+63;2288;MONITOR;Campos obrigatórios vazios: Responsável
+64;2289;MONITOR;Campos obrigatórios vazios: Responsável
+65;2290;MONITOR;Campos obrigatórios vazios: Responsável
+66;2291;MONITOR;Campos obrigatórios vazios: Responsável
+67;2292;MONITOR;Campos obrigatórios vazios: Responsável
+68;2293;MONITOR;Campos obrigatórios vazios: Responsável
+69;2294;MONITOR;Campos obrigatórios vazios: Responsável
+70;2295;MONITOR;Campos obrigatórios vazios: Responsável
+71;2296;MONITOR;Campos obrigatórios vazios: Responsável
+72;2297;MONITOR;Campos obrigatórios vazios: Responsável
+73;2298;MONITOR;Campos obrigatórios vazios: Responsável
+74;2300;MONITOR;Campos obrigatórios vazios: Responsável
+75;2301;PC;Campos obrigatórios vazios: Marca, Responsável
+76;2302;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+77;2305;PC;Campos obrigatórios vazios: Responsável
+78;2306;PC;Campos obrigatórios vazios: Responsável
+79;2308;PC;Campos obrigatórios vazios: Responsável
+80;2310;PC;Campos obrigatórios vazios: Responsável
+81;2311;PC;Campos obrigatórios vazios: Responsável
+82;2313;PC;Campos obrigatórios vazios: Responsável
+83;2314;PC;Campos obrigatórios vazios: Responsável
+84;2315;MONITOR;Campos obrigatórios vazios: Responsável
+85;2316;MONITOR;Campos obrigatórios vazios: Responsável
+86;2317;MONITOR;Campos obrigatórios vazios: Responsável
+87;2318;MONITOR;Campos obrigatórios vazios: Responsável
+88;2319;MONITOR;Campos obrigatórios vazios: Responsável
+89;2320;MONITOR;Campos obrigatórios vazios: Responsável
+90;2321;MONITOR;Campos obrigatórios vazios: Responsável
+91;2322;MONITOR;Campos obrigatórios vazios: Responsável
+92;2324;MONITOR;Campos obrigatórios vazios: Responsável
+93;2325;PC;Campos obrigatórios vazios: Marca, Responsável
+94;2400;PC;Campos obrigatórios vazios: Marca, Responsável
+95;2405;PC;Campos obrigatórios vazios: Responsável
+96;2415;PC;Campos obrigatórios vazios: Responsável
+98;2421;MONITOR;Campos obrigatórios vazios: Responsável
+99;2424;PC;Campos obrigatórios vazios: Responsável
+100;2425;PC;Campos obrigatórios vazios: Responsável
+101;2426;PC;Campos obrigatórios vazios: Marca, Responsável
+102;2429;PC;Campos obrigatórios vazios: Responsável
+103;2430;PC;Campos obrigatórios vazios: Responsável
+104;2434;PC;Campos obrigatórios vazios: Responsável
+105;2436;PC;Campos obrigatórios vazios: Responsável
+106;2437;PC;Campos obrigatórios vazios: Responsável
+107;2439;PC;Campos obrigatórios vazios: Responsável
+108;2440;PC;Campos obrigatórios vazios: Responsável
+109;2441;PC;Campos obrigatórios vazios: Responsável
+110;2483;MONITOR;Campos obrigatórios vazios: Responsável
+111;2484;MONITOR;Campos obrigatórios vazios: Responsável
+112;2485;MONITOR;Campos obrigatórios vazios: Responsável
+113;2486;PC;Campos obrigatórios vazios: Responsável
+114;2498;PC;Campos obrigatórios vazios: Responsável
+115;2500;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Responsável
+116;2562;MONITOR;Campos obrigatórios vazios: Responsável
+117;2566;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+118;2567;MONITOR;Campos obrigatórios vazios: Responsável
+119;2570;MAQ.CHEQUE;Campos obrigatórios vazios: Marca, Responsável
+121;2582;NOTEBOOK;Campos obrigatórios vazios: Responsável
+122;2583;NOTEBOOK;Campos obrigatórios vazios: Responsável
+123;2585;PC;Campos obrigatórios vazios: Responsável
+124;2589;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+125;2590;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+126;2591;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+127;2592;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+128;2593;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+129;2594;MONITOR;Campos obrigatórios vazios: Marca
+130;2595;PC;Campos obrigatórios vazios: Responsável
+131;2596;PC;Campos obrigatórios vazios: Marca, Responsável
+132;2597;PC;Campos obrigatórios vazios: Responsável
+133;2598;PC;Campos obrigatórios vazios: Responsável
+134;2599;PC;Campos obrigatórios vazios: Responsável
+135;2600;PC;Campos obrigatórios vazios: Responsável
+139;2606;PROJETOR;Campos obrigatórios vazios: Responsável
+140;2607;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca
+141;2608;NETBOOK;Campos obrigatórios vazios: Responsável
+142;2614;MONITOR;Campos obrigatórios vazios: Responsável
+143;2615;MONITOR;Campos obrigatórios vazios: Responsável
+144;2616;MONITOR;Campos obrigatórios vazios: Responsável
+145;2617;MONITOR;Campos obrigatórios vazios: Responsável
+146;2618;MONITOR;Campos obrigatórios vazios: Responsável
+147;2619;MONITOR;Campos obrigatórios vazios: Responsável
+148;2620;MONITOR;Campos obrigatórios vazios: Responsável
+149;2621;MONITOR;Campos obrigatórios vazios: Responsável
+150;2622;MONITOR;Campos obrigatórios vazios: Responsável
+151;2623;MONITOR;Campos obrigatórios vazios: Responsável
+152;2624;MONITOR;Campos obrigatórios vazios: Responsável
+153;2625;MONITOR;Campos obrigatórios vazios: Responsável
+154;2626;MONITOR;Campos obrigatórios vazios: Responsável
+155;2627;MONITOR;Campos obrigatórios vazios: Responsável
+156;2628;MONITOR;Campos obrigatórios vazios: Responsável
+157;2629;MONITOR;Campos obrigatórios vazios: Responsável
+158;2630;MONITOR;Campos obrigatórios vazios: Responsável
+159;2633;PC;Campos obrigatórios vazios: Responsável
+160;2635;PC;Campos obrigatórios vazios: Responsável
+161;2637;PC;Campos obrigatórios vazios: Responsável
+162;2638;PC;Campos obrigatórios vazios: Responsável
+163;2640;PC;Campos obrigatórios vazios: Responsável
+164;2641;PC;Campos obrigatórios vazios: Responsável
+165;2642;PC;Campos obrigatórios vazios: Marca, Responsável
+166;2647;PC;Campos obrigatórios vazios: Responsável
+167;2652;TV;Campos obrigatórios vazios: Responsável
+168;2700;MONITOR;Campos obrigatórios vazios: Responsável
+169;2731;PROJETOR;Campos obrigatórios vazios: Responsável
+170;2732;PROJETOR;Campos obrigatórios vazios: Responsável
+171;2747;PC;Campos obrigatórios vazios: Responsável
+172;2797;PC;Campos obrigatórios vazios: Responsável
+173;2803;NETTOP;Campos obrigatórios vazios: Marca, Responsável
+174;2860;PC;Campos obrigatórios vazios: Responsável
+175;2882;MONITOR;Campos obrigatórios vazios: Responsável
+176;2883;PC;Campos obrigatórios vazios: Responsável
+177;2908;PC;Campos obrigatórios vazios: Responsável
+178;2909;IMPRESSORA;Campos obrigatórios vazios: Responsável
+179;2911;NOTEBOOK;Campos obrigatórios vazios: Responsável
+180;2912;TV;Campos obrigatórios vazios: Responsável
+181;2919;MONITOR;Campos obrigatórios vazios: Responsável
+182;2920;MONITOR;Campos obrigatórios vazios: Responsável
+183;2921;MONITOR;Campos obrigatórios vazios: Responsável
+184;2922;MONITOR;Campos obrigatórios vazios: Responsável
+185;2923;PC;Campos obrigatórios vazios: Responsável
+186;2924;PC;Campos obrigatórios vazios: Responsável
+187;2925;PC;Campos obrigatórios vazios: Responsável
+188;2926;PC;Campos obrigatórios vazios: Responsável
+189;2953;PROJETOR;Campos obrigatórios vazios: Responsável
+190;2954;PROJETOR;Campos obrigatórios vazios: Responsável
+191;2955;PROJETOR;Campos obrigatórios vazios: Responsável
+192;2956;PROJETOR;Campos obrigatórios vazios: Responsável
+193;2957;PROJETOR;Campos obrigatórios vazios: Responsável
+194;2958;PROJETOR;Campos obrigatórios vazios: Responsável
+195;2959;PROJETOR;Campos obrigatórios vazios: Responsável
+196;2960;PROJETOR;Campos obrigatórios vazios: Responsável
+197;2962;PROJETOR;Campos obrigatórios vazios: Responsável
+198;2969;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+199;2970;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+200;2972;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+201;2973;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+203;2976;SWITCH;Campos obrigatórios vazios: Responsável
+204;3016;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+205;3018;MONITOR;Campos obrigatórios vazios: Responsável
+208;3023;TV;Campos obrigatórios vazios: Responsável
+209;3024;MONITOR;Campos obrigatórios vazios: Responsável
+210;3041;PC;Campos obrigatórios vazios: Responsável
+211;3042;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+212;3094;PROJETOR;Campos obrigatórios vazios: Responsável
+213;3095;PROJETOR;Campos obrigatórios vazios: Responsável
+214;3096;PROJETOR;Campos obrigatórios vazios: Responsável
+215;3097;PROJETOR;Campos obrigatórios vazios: Responsável
+216;3098;PROJETOR;Campos obrigatórios vazios: Responsável
+217;3100;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+218;3101;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+219;3103;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+220;3104;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+221;3105;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+222;3106;PC;Campos obrigatórios vazios: Responsável
+223;3107;PC;Campos obrigatórios vazios: Responsável
+224;3108;NOTEBOOK;Campos obrigatórios vazios: Responsável
+226;3115;MONITOR;Campos obrigatórios vazios: Responsável
+227;3116;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+228;3154;NOTEBOOK;Campos obrigatórios vazios: Responsável
+229;3167;TV;Campos obrigatórios vazios: Responsável
+230;3245;PROJETOR;Campos obrigatórios vazios: Responsável
+231;3246;PC;Campos obrigatórios vazios: Responsável
+232;3264;PC;Campos obrigatórios vazios: Responsável
+233;3265;PC;Campos obrigatórios vazios: Responsável
+234;3266;MONITOR;Campos obrigatórios vazios: Responsável
+235;3267;MONITOR;Campos obrigatórios vazios: Responsável
+236;3299;PROJETOR;Campos obrigatórios vazios: Responsável
+237;3300;PROJETOR;Campos obrigatórios vazios: Responsável
+238;3312;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+239;3313;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+240;3405;PICOTADORA;Campos obrigatórios vazios: Marca, Responsável
+241;3409;PROJETOR;Campos obrigatórios vazios: Responsável
+242;3410;PROJETOR;Campos obrigatórios vazios: Responsável
+243;3411;PROJETOR;Campos obrigatórios vazios: Responsável
+244;3412;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+245;3413;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+246;3415;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+247;3436;PC;Campos obrigatórios vazios: Marca, Responsável
+248;3437;PC;Campos obrigatórios vazios: Marca, Responsável
+249;3438;PC;Campos obrigatórios vazios: Marca, Responsável
+250;3443;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+251;3444;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+252;3445;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+253;3448;PROJETOR;Campos obrigatórios vazios: Responsável
+254;3449;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+255;3450;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+256;3451;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+257;3452;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+258;3453;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+259;3480;TV;Campos obrigatórios vazios: Responsável
+264;3512;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+265;3513;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+266;3515;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+267;3516;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+268;3573;SERVIDOR;Campos obrigatórios vazios: Responsável
+270;3580;PROJETOR;Campos obrigatórios vazios: Responsável
+271;3581;PROJETOR;Campos obrigatórios vazios: Responsável
+272;3582;PROJETOR;Campos obrigatórios vazios: Responsável
+273;3583;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+274;3584;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+275;3585;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+276;3607;PROJETOR;Campos obrigatórios vazios: Responsável
+277;3608;PROJETOR;Campos obrigatórios vazios: Responsável
+278;3609;PROJETOR;Campos obrigatórios vazios: Responsável
+279;3612;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+280;3613;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+281;3614;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+282;3624;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+283;3628;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+284;3629;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+285;3630;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+286;3649;PROJETOR;Campos obrigatórios vazios: Responsável
+287;3653;PC;Campos obrigatórios vazios: Marca, Responsável
+288;3654;PC;Campos obrigatórios vazios: Marca, Responsável
+289;3655;PC;Campos obrigatórios vazios: Marca, Responsável
+290;3656;PROJETOR;Campos obrigatórios vazios: Responsável
+291;3657;PROJETOR;Campos obrigatórios vazios: Responsável
+292;3694;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+293;3695;DVR;Campos obrigatórios vazios: Marca, Responsável
+294;3697;PROJETOR;Campos obrigatórios vazios: Responsável
+295;3698;PC;Campos obrigatórios vazios: Marca, Responsável
+296;3700;PROJETOR;Campos obrigatórios vazios: Responsável
+297;3701;PROJETOR;Campos obrigatórios vazios: Responsável
+298;3702;PROJETOR;Campos obrigatórios vazios: Responsável
+299;3703;PROJETOR;Campos obrigatórios vazios: Responsável
+300;3704;NOTEBOOK;Campos obrigatórios vazios: Responsável
+301;3705;NOTEBOOK;Campos obrigatórios vazios: Responsável
+302;3706;NOTEBOOK;Campos obrigatórios vazios: Responsável
+303;3707;NOTEBOOK;Campos obrigatórios vazios: Responsável
+304;3708;NOTEBOOK;Campos obrigatórios vazios: Responsável
+305;3709;PROJETOR;Campos obrigatórios vazios: Responsável
+306;3710;PROJETOR;Campos obrigatórios vazios: Responsável
+307;3727;PC;Campos obrigatórios vazios: Responsável
+308;3732;PROJETOR;Campos obrigatórios vazios: Responsável
+309;3733;NETBOOK;Campos obrigatórios vazios: Responsável
+310;3736;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+311;3737;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+312;3738;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+313;3739;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+314;3740;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+315;3747;NOTEBOOK;Campos obrigatórios vazios: Responsável
+316;3748;DVR;Campos obrigatórios vazios: Marca, Responsável
+317;3760;MONITOR;Campos obrigatórios vazios: Responsável
+318;3761;MONITOR;Campos obrigatórios vazios: Responsável
+319;3762;MONITOR;Campos obrigatórios vazios: Responsável
+320;3763;MONITOR;Campos obrigatórios vazios: Responsável
+321;3764;MONITOR;Campos obrigatórios vazios: Responsável
+322;3765;MONITOR;Campos obrigatórios vazios: Responsável
+323;3766;MONITOR;Campos obrigatórios vazios: Responsável
+324;3767;MONITOR;Campos obrigatórios vazios: Responsável
+325;3768;MONITOR;Campos obrigatórios vazios: Responsável
+326;3769;MONITOR;Campos obrigatórios vazios: Responsável
+327;3770;MONITOR;Campos obrigatórios vazios: Responsável
+328;3771;MONITOR;Campos obrigatórios vazios: Responsável
+329;3772;MONITOR;Campos obrigatórios vazios: Responsável
+330;3773;MONITOR;Campos obrigatórios vazios: Responsável
+331;3774;MONITOR;Campos obrigatórios vazios: Responsável
+332;3775;MONITOR;Campos obrigatórios vazios: Responsável
+333;3776;MONITOR;Campos obrigatórios vazios: Responsável
+334;3777;MONITOR;Campos obrigatórios vazios: Responsável
+335;3778;MONITOR;Campos obrigatórios vazios: Responsável
+336;3779;MONITOR;Campos obrigatórios vazios: Responsável
+337;3780;MONITOR;Campos obrigatórios vazios: Responsável
+338;3781;MONITOR;Campos obrigatórios vazios: Responsável
+339;3782;PC;Campos obrigatórios vazios: Responsável
+340;3783;PC;Campos obrigatórios vazios: Responsável
+341;3784;PC;Campos obrigatórios vazios: Responsável
+342;3785;PC;Campos obrigatórios vazios: Responsável
+343;3786;PC;Campos obrigatórios vazios: Responsável
+344;3787;PC;Campos obrigatórios vazios: Responsável
+345;3788;PC;Campos obrigatórios vazios: Responsável
+346;3789;PC;Campos obrigatórios vazios: Responsável
+347;3790;PC;Campos obrigatórios vazios: Responsável
+348;3791;PC;Campos obrigatórios vazios: Responsável
+349;3792;PC;Campos obrigatórios vazios: Responsável
+350;3793;PC;Campos obrigatórios vazios: Responsável
+351;3794;PC;Campos obrigatórios vazios: Responsável
+352;3795;PC;Campos obrigatórios vazios: Responsável
+353;3796;PC;Campos obrigatórios vazios: Responsável
+354;3797;PC;Campos obrigatórios vazios: Responsável
+355;3798;PC;Campos obrigatórios vazios: Responsável
+356;3800;PC;Campos obrigatórios vazios: Responsável
+357;3801;PC;Campos obrigatórios vazios: Responsável
+358;3802;PC;Campos obrigatórios vazios: Responsável
+359;3803;PC;Campos obrigatórios vazios: Responsável
+360;3804;PC;Campos obrigatórios vazios: Responsável
+361;3805;PC;Campos obrigatórios vazios: Responsável
+362;3806;PC;Campos obrigatórios vazios: Responsável
+363;3807;PC;Campos obrigatórios vazios: Responsável
+364;3808;PROJETOR;Campos obrigatórios vazios: Responsável
+365;3809;PROJETOR;Campos obrigatórios vazios: Responsável
+366;3810;PROJETOR;Campos obrigatórios vazios: Responsável
+367;3811;PROJETOR;Campos obrigatórios vazios: Responsável
+368;3812;PROJETOR;Campos obrigatórios vazios: Responsável
+369;3813;PROJETOR;Campos obrigatórios vazios: Responsável
+370;3814;MONITOR;Campos obrigatórios vazios: Responsável
+371;3815;MONITOR;Campos obrigatórios vazios: Responsável
+372;3816;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+373;3817;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+374;3818;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+375;3819;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+376;3820;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+377;3821;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+378;3822;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+379;3823;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+380;3824;MONITOR;Campos obrigatórios vazios: Responsável
+381;3825;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+382;3826;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+383;3827;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+384;3828;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+385;3829;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+386;3830;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+387;3832;PC;Campos obrigatórios vazios: Responsável
+388;3833;PC;Campos obrigatórios vazios: Responsável
+389;3834;PC;Campos obrigatórios vazios: Responsável
+390;3835;PC;Campos obrigatórios vazios: Responsável
+391;3836;PC;Campos obrigatórios vazios: Responsável
+392;3837;PC;Campos obrigatórios vazios: Responsável
+393;3838;PC;Campos obrigatórios vazios: Responsável
+394;3839;PC;Campos obrigatórios vazios: Responsável
+395;3840;PC;Campos obrigatórios vazios: Responsável
+396;3841;PC;Campos obrigatórios vazios: Responsável
+397;3842;PC;Campos obrigatórios vazios: Responsável
+398;3843;PC;Campos obrigatórios vazios: Responsável
+399;3844;PC;Campos obrigatórios vazios: Responsável
+400;3845;PC;Campos obrigatórios vazios: Responsável
+401;3846;PC;Campos obrigatórios vazios: Responsável
+402;3847;PC;Campos obrigatórios vazios: Responsável
+403;3848;PC;Campos obrigatórios vazios: Responsável
+404;3850;PROJETOR;Campos obrigatórios vazios: Responsável
+405;3851;PROJETOR;Campos obrigatórios vazios: Responsável
+406;4139;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+407;4140;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+408;4141;MONITOR;Campos obrigatórios vazios: Responsável
+409;4142;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+410;4143;MONITOR;Campos obrigatórios vazios: Responsável
+411;4144;PC;Campos obrigatórios vazios: Marca, Responsável
+412;4145;PC;Campos obrigatórios vazios: Responsável
+413;4146;PC;Campos obrigatórios vazios: Responsável
+414;4147;PC;Campos obrigatórios vazios: Responsável
+415;4148;PC;Campos obrigatórios vazios: Responsável
+416;4149;TV;Campos obrigatórios vazios: Responsável
+417;4150;TV;Campos obrigatórios vazios: Responsável
+418;4151;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+419;4152;PROJETOR;Campos obrigatórios vazios: Responsável
+420;4153;PROJETOR;Campos obrigatórios vazios: Responsável
+421;4164;ROTEADOR;Campos obrigatórios vazios: Marca, Responsável
+422;4165;ROTEADOR;Campos obrigatórios vazios: Responsável
+423;4166;ROTEADOR;Campos obrigatórios vazios: Responsável
+424;4167;ROTEADOR;Campos obrigatórios vazios: Marca, Responsável
+425;4168;ROTEADOR;Campos obrigatórios vazios: Responsável
+426;4169;ROTEADOR;Campos obrigatórios vazios: Responsável
+427;4380;TV;Campos obrigatórios vazios: Responsável
+428;4686;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+429;4687;DVR;Campos obrigatórios vazios: Marca, Responsável
+430;4878;TV;Campos obrigatórios vazios: Responsável
+431;4879;PROJETOR;Campos obrigatórios vazios: Responsável
+432;4880;PROJETOR;Campos obrigatórios vazios: Responsável
+433;4934;MONITOR;Campos obrigatórios vazios: Responsável
+434;4936;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+435;4937;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+436;4938;PROJETOR;Campos obrigatórios vazios: Responsável
+437;4939;PROJETOR;Campos obrigatórios vazios: Responsável
+438;4940;PROJETOR;Campos obrigatórios vazios: Responsável
+439;4941;TABLET;Campos obrigatórios vazios: Responsável
+440;4942;TABLET;Campos obrigatórios vazios: Responsável
+441;4943;TABLET;Campos obrigatórios vazios: Responsável
+442;4944;TABLET;Campos obrigatórios vazios: Responsável
+443;4945;TABLET;Campos obrigatórios vazios: Responsável
+444;4946;TABLET;Campos obrigatórios vazios: Responsável
+445;4947;TABLET;Campos obrigatórios vazios: Responsável
+446;4948;TABLET;Campos obrigatórios vazios: Responsável
+447;4949;TABLET;Campos obrigatórios vazios: Responsável
+448;4950;TABLET;Campos obrigatórios vazios: Responsável
+449;4951;TABLET;Campos obrigatórios vazios: Responsável
+450;4952;TABLET;Campos obrigatórios vazios: Responsável
+451;4953;TABLET;Campos obrigatórios vazios: Responsável
+452;4954;TABLET;Campos obrigatórios vazios: Responsável
+453;4955;TABLET;Campos obrigatórios vazios: Responsável
+454;4956;TABLET;Campos obrigatórios vazios: Responsável
+455;4957;TABLET;Campos obrigatórios vazios: Responsável
+456;4958;TABLET;Campos obrigatórios vazios: Responsável
+457;4959;TABLET;Campos obrigatórios vazios: Responsável
+458;4960;TABLET;Campos obrigatórios vazios: Responsável
+459;4961;TABLET;Campos obrigatórios vazios: Responsável
+460;4962;TABLET;Campos obrigatórios vazios: Responsável
+461;4963;TABLET;Campos obrigatórios vazios: Responsável
+462;4964;TABLET;Campos obrigatórios vazios: Responsável
+463;4965;TABLET;Campos obrigatórios vazios: Responsável
+464;4966;TABLET;Campos obrigatórios vazios: Responsável
+465;4967;TABLET;Campos obrigatórios vazios: Responsável
+466;4968;TABLET;Campos obrigatórios vazios: Responsável
+467;4969;TABLET;Campos obrigatórios vazios: Responsável
+468;4970;TABLET;Campos obrigatórios vazios: Responsável
+469;4971;TABLET;Campos obrigatórios vazios: Responsável
+470;4972;TABLET;Campos obrigatórios vazios: Responsável
+471;4973;TABLET;Campos obrigatórios vazios: Responsável
+472;4974;TABLET;Campos obrigatórios vazios: Responsável
+473;4975;TABLET;Campos obrigatórios vazios: Responsável
+474;4984;NOTEBOOK;Campos obrigatórios vazios: Responsável
+475;5003;DVR;Campos obrigatórios vazios: Marca, Responsável
+476;5042;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+477;5043;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+478;5044;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+479;5045;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+480;5046;DVR;Campos obrigatórios vazios: Responsável
+481;5047;CAMERA IP;Campos obrigatórios vazios: Responsável
+482;5048;CAMERA IP;Campos obrigatórios vazios: Responsável
+483;5049;CAMERA IP;Campos obrigatórios vazios: Responsável
+484;5050;CAMERA IP;Campos obrigatórios vazios: Responsável
+485;5051;CAMERA IP;Campos obrigatórios vazios: Responsável
+486;5052;CAMERA IP;Campos obrigatórios vazios: Responsável
+487;5054;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+488;5055;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+489;5056;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+490;5057;CAIXA DE SOM;Campos obrigatórios vazios: Responsável
+491;5059;TV;Campos obrigatórios vazios: Responsável
+492;5105;TV BOX;Campos obrigatórios vazios: Marca, Responsável
+493;5106;TV BOX;Campos obrigatórios vazios: Marca, Responsável
+494;5108;PROJETOR;Campos obrigatórios vazios: Responsável
+495;5109;PROJETOR;Campos obrigatórios vazios: Responsável
+496;5110;PROJETOR;Campos obrigatórios vazios: Responsável
+497;5111;PROJETOR;Campos obrigatórios vazios: Responsável
+498;5112;PROJETOR;Campos obrigatórios vazios: Responsável
+499;5113;PROJETOR;Campos obrigatórios vazios: Responsável
+500;5114;PROJETOR;Campos obrigatórios vazios: Responsável
+501;5115;PROJETOR;Campos obrigatórios vazios: Responsável
+502;5116;NOBREAK;Campos obrigatórios vazios: Responsável
+503;5132;PROJETOR;Campos obrigatórios vazios: Responsável
+504;5133;PROJETOR;Campos obrigatórios vazios: Responsável
+505;5136;PC;Campos obrigatórios vazios: Responsável
+506;5196;PC;Campos obrigatórios vazios: Responsável
+507;5197;PC;Campos obrigatórios vazios: Responsável
+508;5198;CAMERA IP;Campos obrigatórios vazios: Responsável
+509;5199;CAMERA IP;Campos obrigatórios vazios: Responsável
+510;5200;CAMERA IP;Campos obrigatórios vazios: Responsável
+511;5201;CAMERA IP;Campos obrigatórios vazios: Responsável
+512;5202;CAMERA IP;Campos obrigatórios vazios: Marca, Responsável
+513;5203;CAMERA IP;Campos obrigatórios vazios: Responsável
+514;5204;CAMERA IP;Campos obrigatórios vazios: Responsável
+515;5205;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+516;5207;PC;Campos obrigatórios vazios: Responsável
+517;5208;PC;Campos obrigatórios vazios: Responsável
+518;5209;PC;Campos obrigatórios vazios: Responsável
+519;5210;PC;Campos obrigatórios vazios: Responsável
+520;5211;PC;Campos obrigatórios vazios: Responsável
+521;5212;PC;Campos obrigatórios vazios: Responsável
+522;5213;PC;Campos obrigatórios vazios: Responsável
+523;5214;PC;Campos obrigatórios vazios: Responsável
+524;5215;PC;Campos obrigatórios vazios: Responsável
+525;5216;PC;Campos obrigatórios vazios: Responsável
+526;5217;PC;Campos obrigatórios vazios: Responsável
+527;5219;TV;Campos obrigatórios vazios: Responsável
+528;5220;TV;Campos obrigatórios vazios: Responsável
+529;5221;MONITOR;Campos obrigatórios vazios: Responsável
+530;5222;MONITOR;Campos obrigatórios vazios: Responsável
+531;5223;MONITOR;Campos obrigatórios vazios: Responsável
+532;5224;MONITOR;Campos obrigatórios vazios: Responsável
+533;5225;MONITOR;Campos obrigatórios vazios: Responsável
+534;5226;MONITOR;Campos obrigatórios vazios: Responsável
+535;5227;MONITOR;Campos obrigatórios vazios: Responsável
+536;5228;MONITOR;Campos obrigatórios vazios: Responsável
+537;5229;MONITOR;Campos obrigatórios vazios: Responsável
+538;5230;MONITOR;Campos obrigatórios vazios: Responsável
+539;5231;MONITOR;Campos obrigatórios vazios: Responsável
+540;5409;ROTEADOR;Campos obrigatórios vazios: Responsável
+541;5410;ROTEADOR;Campos obrigatórios vazios: Responsável
+542;5411;MONITOR;Campos obrigatórios vazios: Responsável
+543;5412;MONITOR;Campos obrigatórios vazios: Responsável
+544;5413;MONITOR;Campos obrigatórios vazios: Responsável
+545;5414;MONITOR;Campos obrigatórios vazios: Responsável
+546;5415;MONITOR;Campos obrigatórios vazios: Responsável
+547;5416;MONITOR;Campos obrigatórios vazios: Responsável
+548;5417;MONITOR;Campos obrigatórios vazios: Responsável
+549;5418;MONITOR;Campos obrigatórios vazios: Responsável
+550;5419;MONITOR;Campos obrigatórios vazios: Responsável
+551;5420;MONITOR;Campos obrigatórios vazios: Responsável
+552;5421;MONITOR;Campos obrigatórios vazios: Responsável
+553;5422;MONITOR;Campos obrigatórios vazios: Responsável
+554;5423;MONITOR;Campos obrigatórios vazios: Responsável
+555;5424;MONITOR;Campos obrigatórios vazios: Responsável
+556;5425;MONITOR;Campos obrigatórios vazios: Responsável
+557;5427;MONITOR;Campos obrigatórios vazios: Responsável
+558;5428;MONITOR;Campos obrigatórios vazios: Responsável
+559;5429;PC;Campos obrigatórios vazios: Responsável
+560;5430;PC;Campos obrigatórios vazios: Responsável
+561;5431;PC;Campos obrigatórios vazios: Responsável
+562;5432;PC;Campos obrigatórios vazios: Responsável
+563;5433;PC;Campos obrigatórios vazios: Responsável
+564;5434;PC;Campos obrigatórios vazios: Responsável
+565;5435;PC;Campos obrigatórios vazios: Responsável
+566;5436;PC;Campos obrigatórios vazios: Responsável
+567;5437;PC;Campos obrigatórios vazios: Responsável
+568;5438;PC;Campos obrigatórios vazios: Responsável
+569;5439;PC;Campos obrigatórios vazios: Responsável
+570;5440;PC;Campos obrigatórios vazios: Responsável
+571;5441;PC;Campos obrigatórios vazios: Responsável
+572;5442;PC;Campos obrigatórios vazios: Responsável
+573;5443;PC;Campos obrigatórios vazios: Responsável
+574;5444;PC;Campos obrigatórios vazios: Responsável
+575;5445;PC;Campos obrigatórios vazios: Responsável
+576;5446;PC;Campos obrigatórios vazios: Responsável
+577;5447;PC;Campos obrigatórios vazios: Responsável
+578;5448;PC;Campos obrigatórios vazios: Responsável
+579;5457;PROJETOR;Campos obrigatórios vazios: Responsável
+580;5459;TV;Campos obrigatórios vazios: Responsável
+581;5460;TV;Campos obrigatórios vazios: Responsável
+582;5461;TV;Campos obrigatórios vazios: Responsável
+583;5465;PC;Campos obrigatórios vazios: Responsável
+584;5466;PC;Campos obrigatórios vazios: Responsável
+585;5467;PC;Campos obrigatórios vazios: Responsável
+586;5468;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+587;5469;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+588;5470;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+589;5471;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+590;5472;PROJETOR;Campos obrigatórios vazios: Responsável
+591;5475;MONITOR;Campos obrigatórios vazios: Responsável
+592;5476;PC;Campos obrigatórios vazios: Responsável
+593;5477;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+594;5478;CAMERA IP;Campos obrigatórios vazios: Responsável
+595;5479;CAMERA IP;Campos obrigatórios vazios: Responsável
+596;5481;CAMERA IP;Campos obrigatórios vazios: Responsável
+597;5482;CAMERA IP;Campos obrigatórios vazios: Responsável
+598;5489;PC;Campos obrigatórios vazios: Responsável
+599;5490;PC;Campos obrigatórios vazios: Responsável
+600;5491;CAMERA IP;Campos obrigatórios vazios: Responsável
+601;5492;CAMERA IP;Campos obrigatórios vazios: Responsável
+602;5498;DVR;Campos obrigatórios vazios: Marca, Responsável
+603;5501;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+604;5502;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+605;5503;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+606;5504;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+607;5505;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+608;5506;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+609;5507;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+610;5508;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+611;5509;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+612;5510;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+613;5515;MÁQ. FOTOGRÁFICA;Campos obrigatórios vazios: Responsável
+614;5522;SWITCH;Campos obrigatórios vazios: Responsável
+615;5523;SWITCH;Campos obrigatórios vazios: Responsável
+616;5524;SWITCH;Campos obrigatórios vazios: Responsável
+617;5525;RACK DE PAREDE;Campos obrigatórios vazios: Marca, Responsável
+618;5535;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+619;5536;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+620;5537;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+621;5538;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+622;5539;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+623;5540;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+624;5541;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+625;5542;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+626;5543;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+627;5544;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+628;5545;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+629;5546;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+630;5547;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+631;5548;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+632;5549;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+633;5550;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+634;5551;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+635;5552;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+636;5553;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+637;5554;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+638;5666;PC;Campos obrigatórios vazios: Responsável
+639;5667;PC;Campos obrigatórios vazios: Responsável
+640;5675;PC;Campos obrigatórios vazios: Responsável
+641;5676;PC;Campos obrigatórios vazios: Responsável
+642;5677;SMARTPHONE;Campos obrigatórios vazios: Responsável
+643;5678;SMARTPHONE;Campos obrigatórios vazios: Responsável
+644;5679;SMARTPHONE;Campos obrigatórios vazios: Responsável
+645;5680;SMARTPHONE;Campos obrigatórios vazios: Responsável
+646;5681;SMARTPHONE;Campos obrigatórios vazios: Responsável
+647;5682;SMARTPHONE;Campos obrigatórios vazios: Responsável
+648;5683;SMARTPHONE;Campos obrigatórios vazios: Responsável
+649;5684;SMARTPHONE;Campos obrigatórios vazios: Responsável
+650;5685;SMARTPHONE;Campos obrigatórios vazios: Responsável
+651;5686;SMARTPHONE;Campos obrigatórios vazios: Responsável
+652;5687;SMARTPHONE;Campos obrigatórios vazios: Responsável
+653;5688;SMARTPHONE;Campos obrigatórios vazios: Responsável
+654;5689;SMARTPHONE;Campos obrigatórios vazios: Responsável
+655;5690;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+656;5693;PC;Campos obrigatórios vazios: Responsável
+657;5694;PC;Campos obrigatórios vazios: Responsável
+658;5695;PC;Campos obrigatórios vazios: Responsável
+659;5696;PC;Campos obrigatórios vazios: Responsável
+660;5697;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+661;5698;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+662;5699;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+663;5700;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+664;5801;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+665;5802;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+666;5803;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+667;5804;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+668;5805;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+669;5806;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+670;5807;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+671;5808;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+672;5809;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+673;5810;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+674;5811;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+675;5818;TV;Campos obrigatórios vazios: Responsável
+676;5823;PROJETOR;Campos obrigatórios vazios: Responsável
+677;5828;DVR;Campos obrigatórios vazios: Marca, Responsável
+678;5831;PC;Campos obrigatórios vazios: Responsável
+679;5832;PC;Campos obrigatórios vazios: Responsável
+680;5833;PC;Campos obrigatórios vazios: Responsável
+681;5834;PC;Campos obrigatórios vazios: Responsável
+682;5837;PROJETOR;Campos obrigatórios vazios: Responsável
+683;5909;PROJETOR;Campos obrigatórios vazios: Responsável
+684;5910;PROJETOR;Campos obrigatórios vazios: Responsável
+685;5911;PROJETOR;Campos obrigatórios vazios: Responsável
+686;5912;PROJETOR;Campos obrigatórios vazios: Responsável
+687;5913;PROJETOR;Campos obrigatórios vazios: Responsável
+688;5914;PROJETOR;Campos obrigatórios vazios: Responsável
+689;5915;PC;Campos obrigatórios vazios: Responsável
+690;5916;PC;Campos obrigatórios vazios: Responsável
+691;5917;PC;Campos obrigatórios vazios: Responsável
+692;5918;PC;Campos obrigatórios vazios: Responsável
+693;5919;PC;Campos obrigatórios vazios: Responsável
+694;5920;PC;Campos obrigatórios vazios: Responsável
+695;5921;PC;Campos obrigatórios vazios: Responsável
+696;5922;PC;Campos obrigatórios vazios: Responsável
+697;5923;PC;Campos obrigatórios vazios: Responsável
+698;5924;PC;Campos obrigatórios vazios: Responsável
+699;5925;PC;Campos obrigatórios vazios: Responsável
+700;5926;PC;Campos obrigatórios vazios: Responsável
+701;5927;PC;Campos obrigatórios vazios: Responsável
+702;5928;PC;Campos obrigatórios vazios: Responsável
+703;5929;PC;Campos obrigatórios vazios: Responsável
+704;5930;PC;Campos obrigatórios vazios: Responsável
+705;5931;ARMÁRIO;Campos obrigatórios vazios: Marca, Responsável
+706;5934;MONITOR;Campos obrigatórios vazios: Responsável
+707;5935;MONITOR;Campos obrigatórios vazios: Responsável
+708;5936;MONITOR;Campos obrigatórios vazios: Responsável
+709;5937;MONITOR;Campos obrigatórios vazios: Responsável
+710;5939;MONITOR;Campos obrigatórios vazios: Responsável
+711;5940;MONITOR;Campos obrigatórios vazios: Responsável
+712;5941;MONITOR;Campos obrigatórios vazios: Responsável
+713;5942;MONITOR;Campos obrigatórios vazios: Responsável
+714;5943;MONITOR;Campos obrigatórios vazios: Responsável
+715;5944;MONITOR;Campos obrigatórios vazios: Responsável
+716;5945;MONITOR;Campos obrigatórios vazios: Responsável
+717;5946;MONITOR;Campos obrigatórios vazios: Responsável
+718;5947;MONITOR;Campos obrigatórios vazios: Responsável
+719;5948;MONITOR;Campos obrigatórios vazios: Responsável
+720;5949;MONITOR;Campos obrigatórios vazios: Responsável
+721;5950;PROJETOR;Campos obrigatórios vazios: Responsável
+722;5951;PROJETOR;Campos obrigatórios vazios: Responsável
+723;5952;PROJETOR;Campos obrigatórios vazios: Responsável
+724;5953;PROJETOR;Campos obrigatórios vazios: Responsável
+725;5954;PROJETOR;Campos obrigatórios vazios: Responsável
+726;5955;PROJETOR;Campos obrigatórios vazios: Responsável
+727;5956;PROJETOR;Campos obrigatórios vazios: Responsável
+728;5957;PROJETOR;Campos obrigatórios vazios: Responsável
+729;5958;PROJETOR;Campos obrigatórios vazios: Responsável
+730;5959;PROJETOR;Campos obrigatórios vazios: Responsável
+731;5962;NOTEBOOK;Campos obrigatórios vazios: Responsável
+732;5964;PROJETOR;Campos obrigatórios vazios: Responsável
+733;5965;PROJETOR;Campos obrigatórios vazios: Responsável
+734;5970;PROJETOR;Campos obrigatórios vazios: Responsável
+735;5971;PC;Campos obrigatórios vazios: Responsável
+736;5972;PC;Campos obrigatórios vazios: Responsável
+737;5973;PC;Campos obrigatórios vazios: Responsável
+738;5974;PC;Campos obrigatórios vazios: Responsável
+739;5976;NOTEBOOK;Campos obrigatórios vazios: Responsável
+740;5977;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+741;5978;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+742;5979;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+743;5980;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+744;5981;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+745;5982;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+746;5983;PC;Campos obrigatórios vazios: Responsável
+747;5985;PROJETOR;Campos obrigatórios vazios: Responsável
+748;5986;PC;Campos obrigatórios vazios: Responsável
+749;5987;PC;Campos obrigatórios vazios: Responsável
+750;5989;PC;Campos obrigatórios vazios: Responsável
+751;5990;PC;Campos obrigatórios vazios: Responsável
+752;5993;PROJETOR;Campos obrigatórios vazios: Responsável
+753;5996;ARMÁRIO;Campos obrigatórios vazios: Marca, Responsável
+754;5997;PC;Campos obrigatórios vazios: Responsável
+755;5998;ARMÁRIO;Campos obrigatórios vazios: Marca, Responsável
+756;5999;PC;Campos obrigatórios vazios: Responsável
+757;6101;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+758;6102;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+759;6103;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+760;6104;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+761;6105;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+762;6106;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+763;6107;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+764;6108;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+765;6109;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+766;6110;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+767;6111;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+768;6112;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+769;6113;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+770;6114;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+771;6115;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+772;6116;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+773;6117;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+774;6118;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+775;6119;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+776;6120;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+777;6121;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+778;6122;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+779;6123;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+780;6124;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+781;6125;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+782;6126;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+783;6127;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+784;6128;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+785;6129;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+786;6130;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+787;6131;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+788;6132;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+789;6133;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+790;6134;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+791;6135;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+792;6136;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+793;6137;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+794;6138;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+795;6139;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+796;6140;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+797;6141;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+798;6142;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+799;6143;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+800;6144;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+801;6145;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+802;6146;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+803;6147;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+804;6148;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+805;6149;SWITCH;Campos obrigatórios vazios: Responsável
+806;6151;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+807;6152;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+808;6153;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+809;6154;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+810;6155;CHROMEBOOK;Campos obrigatórios vazios: Responsável
+811;6156;TABLET;Campos obrigatórios vazios: Responsável
+812;6157;TABLET;Campos obrigatórios vazios: Responsável
+813;6158;TABLET;Campos obrigatórios vazios: Responsável
+814;6159;TABLET;Campos obrigatórios vazios: Responsável
+815;6160;TABLET;Campos obrigatórios vazios: Responsável
+816;6161;TABLET;Campos obrigatórios vazios: Responsável
+817;6162;TABLET;Campos obrigatórios vazios: Responsável
+818;6163;TABLET;Campos obrigatórios vazios: Responsável
+819;6164;TABLET;Campos obrigatórios vazios: Responsável
+820;6165;TABLET;Campos obrigatórios vazios: Responsável
+821;6166;TV;Campos obrigatórios vazios: Responsável
+822;6168;ROTEADOR;Campos obrigatórios vazios: Responsável
+823;6169;ROTEADOR;Campos obrigatórios vazios: Responsável
+824;6170;ROTEADOR;Campos obrigatórios vazios: Responsável
+825;6171;ROTEADOR;Campos obrigatórios vazios: Responsável
+826;6172;ROTEADOR;Campos obrigatórios vazios: Responsável
+827;6173;ROTEADOR;Campos obrigatórios vazios: Responsável
+828;6174;ROTEADOR;Campos obrigatórios vazios: Responsável
+829;6175;ROTEADOR;Campos obrigatórios vazios: Responsável
+830;6176;ROTEADOR;Campos obrigatórios vazios: Responsável
+831;6177;ROTEADOR;Campos obrigatórios vazios: Responsável
+832;6178;ROTEADOR;Campos obrigatórios vazios: Responsável
+833;6179;ROTEADOR;Campos obrigatórios vazios: Responsável
+834;6180;ROTEADOR;Campos obrigatórios vazios: Responsável
+835;6181;ROTEADOR;Campos obrigatórios vazios: Responsável
+836;6182;ROTEADOR;Campos obrigatórios vazios: Responsável
+837;6183;ROTEADOR;Campos obrigatórios vazios: Responsável
+838;6184;ROTEADOR;Campos obrigatórios vazios: Responsável
+839;6185;ROTEADOR;Campos obrigatórios vazios: Responsável
+840;6186;ROTEADOR;Campos obrigatórios vazios: Responsável
+841;6187;ROTEADOR;Campos obrigatórios vazios: Responsável
+842;6188;ROTEADOR;Campos obrigatórios vazios: Responsável
+843;6189;ROTEADOR;Campos obrigatórios vazios: Responsável
+844;6190;ROTEADOR;Campos obrigatórios vazios: Responsável
+845;6191;ROTEADOR;Campos obrigatórios vazios: Responsável
+846;6192;ROTEADOR;Campos obrigatórios vazios: Responsável
+847;6193;ROTEADOR;Campos obrigatórios vazios: Responsável
+848;6194;ROTEADOR;Campos obrigatórios vazios: Responsável
+849;6195;ROTEADOR;Campos obrigatórios vazios: Responsável
+850;6196;ROTEADOR;Campos obrigatórios vazios: Responsável
+851;6197;ROTEADOR;Campos obrigatórios vazios: Responsável
+852;6199;SWITCH POE;Campos obrigatórios vazios: Responsável
+853;6200;SWITCH POE;Campos obrigatórios vazios: Responsável
+854;6201;SWITCH POE;Campos obrigatórios vazios: Responsável
+855;6202;SWITCH POE;Campos obrigatórios vazios: Responsável
+856;6203;SWITCH POE;Campos obrigatórios vazios: Responsável
+857;6204;SWITCH POE;Campos obrigatórios vazios: Responsável
+858;6205;SWITCH;Campos obrigatórios vazios: Responsável
+859;6206;SWITCH;Campos obrigatórios vazios: Responsável
+860;6207;SWITCH;Campos obrigatórios vazios: Responsável
+861;6208;SWITCH;Campos obrigatórios vazios: Responsável
+862;6209;SWITCH;Campos obrigatórios vazios: Responsável
+863;6210;TABLET;Campos obrigatórios vazios: Responsável
+864;6211;TABLET;Campos obrigatórios vazios: Responsável
+865;6212;TABLET;Campos obrigatórios vazios: Responsável
+866;6213;TABLET;Campos obrigatórios vazios: Responsável
+867;6214;TABLET;Campos obrigatórios vazios: Responsável
+868;6215;TABLET;Campos obrigatórios vazios: Responsável
+869;6216;TABLET;Campos obrigatórios vazios: Responsável
+870;6217;TABLET;Campos obrigatórios vazios: Responsável
+871;6218;TABLET;Campos obrigatórios vazios: Responsável
+872;6219;TABLET;Campos obrigatórios vazios: Responsável
+873;6220;SWITCH;Campos obrigatórios vazios: Responsável
+874;6234;PC;Campos obrigatórios vazios: Responsável
+875;6235;PC;Campos obrigatórios vazios: Responsável
+876;6236;PC;Campos obrigatórios vazios: Responsável
+877;6237;PC;Campos obrigatórios vazios: Responsável
+878;6331;AMPLIFICADOR;Campos obrigatórios vazios: Responsável
+879;6332;MONITOR;Campos obrigatórios vazios: Responsável
+880;6333;MONITOR;Campos obrigatórios vazios: Responsável
+881;6334;AMPLIFICADOR;Campos obrigatórios vazios: Responsável
+882;6335;AMPLIFICADOR;Campos obrigatórios vazios: Responsável
+883;6469;MONITOR;Campos obrigatórios vazios: Responsável
+884;6470;MONITOR;Campos obrigatórios vazios: Responsável
+885;6471;MONITOR;Campos obrigatórios vazios: Responsável
+886;6473;PROJETOR;Campos obrigatórios vazios: Responsável
+887;6474;PROJETOR;Campos obrigatórios vazios: Responsável
+888;6475;MONITOR;Campos obrigatórios vazios: Responsável
+889;6476;MONITOR;Campos obrigatórios vazios: Responsável
+890;6477;MONITOR;Campos obrigatórios vazios: Responsável
+891;6517;MONITOR;Campos obrigatórios vazios: Responsável
+892;6518;PROJETOR;Campos obrigatórios vazios: Responsável
+893;6519;PROJETOR;Campos obrigatórios vazios: Responsável
+894;6544;PC;Campos obrigatórios vazios: Responsável
+895;6545;PC;Campos obrigatórios vazios: Responsável
+896;6547;PROJETOR;Campos obrigatórios vazios: Responsável
+897;6548;PC;Campos obrigatórios vazios: Responsável
+898;6549;PC;Campos obrigatórios vazios: Responsável
+899;6550;PC;Campos obrigatórios vazios: Responsável
+900;6551;TV;Campos obrigatórios vazios: Responsável
+901;6558;DVR;Campos obrigatórios vazios: Marca, Responsável
+902;6559;DVR;Campos obrigatórios vazios: Marca, Responsável
+903;6560;SWITCH POE;Campos obrigatórios vazios: Responsável
+904;6561;MONITOR;Campos obrigatórios vazios: Responsável
+905;6562;MONITOR;Campos obrigatórios vazios: Responsável
+906;6564;SWITCH POE;Campos obrigatórios vazios: Responsável
+907;6565;SWITCH POE;Campos obrigatórios vazios: Responsável
+908;6566;SWITCH POE;Campos obrigatórios vazios: Responsável
+909;6569;DVR;Campos obrigatórios vazios: Marca, Responsável
+910;6570;ROTEADOR;Campos obrigatórios vazios: Responsável
+911;6572;NOTEBOOK;Campos obrigatórios vazios: Responsável
+912;6573;NOTEBOOK;Campos obrigatórios vazios: Responsável
+913;6574;NOTEBOOK;Campos obrigatórios vazios: Responsável
+914;6575;NOTEBOOK;Campos obrigatórios vazios: Responsável
+915;6576;NOTEBOOK;Campos obrigatórios vazios: Responsável
+916;6577;ROTEADOR;Campos obrigatórios vazios: Responsável
+917;6578;MONITOR;Campos obrigatórios vazios: Responsável
+918;6579;MONITOR;Campos obrigatórios vazios: Responsável
+919;6580;PROJETOR;Campos obrigatórios vazios: Responsável
+920;6581;PC;Campos obrigatórios vazios: Responsável
+921;6582;PC;Campos obrigatórios vazios: Responsável
+922;6583;PC;Campos obrigatórios vazios: Responsável
+923;6584;PC;Campos obrigatórios vazios: Responsável
+924;6586;PROJETOR;Campos obrigatórios vazios: Responsável
+925;6587;PROJETOR;Campos obrigatórios vazios: Responsável
+926;6588;PC;Campos obrigatórios vazios: Responsável
+927;6589;PC;Campos obrigatórios vazios: Responsável
+928;6590;PC;Campos obrigatórios vazios: Responsável
+929;6591;TV;Campos obrigatórios vazios: Responsável
+930;6593;SWITCH POE;Campos obrigatórios vazios: Responsável
+931;6594;MONITOR;Campos obrigatórios vazios: Responsável
+932;6595;PROJETOR;Campos obrigatórios vazios: Responsável
+933;6597;MONITOR;Campos obrigatórios vazios: Responsável
+934;6598;PROJETOR;Campos obrigatórios vazios: Responsável
+935;6601;ROTEADOR;Campos obrigatórios vazios: Responsável
+936;6602;ROTEADOR;Campos obrigatórios vazios: Responsável
+937;6603;ROTEADOR;Campos obrigatórios vazios: Responsável
+938;6604;ROTEADOR;Campos obrigatórios vazios: Responsável
+939;6605;ROTEADOR;Campos obrigatórios vazios: Responsável
+940;6606;ROTEADOR;Campos obrigatórios vazios: Responsável
+941;6607;ROTEADOR;Campos obrigatórios vazios: Responsável
+942;6608;ROTEADOR;Campos obrigatórios vazios: Responsável
+943;6609;ROTEADOR;Campos obrigatórios vazios: Responsável
+944;6610;ROTEADOR;Campos obrigatórios vazios: Responsável
+945;6611;ROTEADOR;Campos obrigatórios vazios: Responsável
+946;6612;ROTEADOR;Campos obrigatórios vazios: Responsável
+947;6613;ROTEADOR;Campos obrigatórios vazios: Responsável
+948;6614;ROTEADOR;Campos obrigatórios vazios: Responsável
+949;6615;ROTEADOR;Campos obrigatórios vazios: Responsável
+950;6616;ROTEADOR;Campos obrigatórios vazios: Responsável
+951;6617;ROTEADOR;Campos obrigatórios vazios: Responsável
+952;6618;ROTEADOR;Campos obrigatórios vazios: Responsável
+953;6619;ROTEADOR;Campos obrigatórios vazios: Responsável
+954;6620;ROTEADOR;Campos obrigatórios vazios: Responsável
+955;6621;ROTEADOR;Campos obrigatórios vazios: Responsável
+956;6622;ROTEADOR;Campos obrigatórios vazios: Responsável
+957;6623;ROTEADOR;Campos obrigatórios vazios: Responsável
+958;6624;ROTEADOR;Campos obrigatórios vazios: Responsável
+959;6625;ROTEADOR;Campos obrigatórios vazios: Responsável
+960;6626;ROTEADOR;Campos obrigatórios vazios: Responsável
+961;6627;ROTEADOR;Campos obrigatórios vazios: Responsável
+962;6628;ROTEADOR;Campos obrigatórios vazios: Responsável
+963;6629;ROTEADOR;Campos obrigatórios vazios: Responsável
+964;6630;ROTEADOR;Campos obrigatórios vazios: Responsável
+965;6631;PROJETOR;Campos obrigatórios vazios: Responsável
+966;6632;PROJETOR;Campos obrigatórios vazios: Responsável
+967;6633;PC;Campos obrigatórios vazios: Responsável
+968;6634;PC;Campos obrigatórios vazios: Responsável
+969;6635;PC;Campos obrigatórios vazios: Responsável
+970;6642;IMPRESSORA;Campos obrigatórios vazios: Responsável
+971;6651;PC;Campos obrigatórios vazios: Responsável
+972;6652;PC;Campos obrigatórios vazios: Responsável
+973;6653;PC;Campos obrigatórios vazios: Responsável
+974;6764;PC;Campos obrigatórios vazios: Responsável
+975;6790;PC;Campos obrigatórios vazios: Responsável
+976;6791;PC;Campos obrigatórios vazios: Responsável
+977;6792;TV;Campos obrigatórios vazios: Responsável
+978;6885;TV;Campos obrigatórios vazios: Responsável
+979;7030;PC;Campos obrigatórios vazios: Responsável
+980;7031;ROTEADOR;Campos obrigatórios vazios: Marca, Responsável
+981;7032;NOTEBOOK;Campos obrigatórios vazios: Responsável
+982;7033;PC;Campos obrigatórios vazios: Responsável
+983;7034;PC;Campos obrigatórios vazios: Responsável
+984;7035;PC;Campos obrigatórios vazios: Responsável
+985;7036;PC;Campos obrigatórios vazios: Responsável
+986;7070;MONITOR;Campos obrigatórios vazios: Responsável
+987;7071;MONITOR;Campos obrigatórios vazios: Responsável
+988;7091;MONITOR;Campos obrigatórios vazios: Responsável
+989;7092;MONITOR;Campos obrigatórios vazios: Responsável
+990;7093;DOCK STATION;Campos obrigatórios vazios: Marca, Responsável
+991;7094;PC;Campos obrigatórios vazios: Responsável
+992;7095;SWITCH POE;Campos obrigatórios vazios: Responsável
+993;7096;SWITCH POE;Campos obrigatórios vazios: Responsável
+994;7097;SWITCH POE;Campos obrigatórios vazios: Responsável
+995;7098;SWITCH POE;Campos obrigatórios vazios: Responsável
+996;7099;PC;Campos obrigatórios vazios: Responsável
+997;7102;SERVIDOR;Campos obrigatórios vazios: Responsável
+998;7112;PROJETOR;Campos obrigatórios vazios: Responsável
+999;7113;PROJETOR;Campos obrigatórios vazios: Responsável
+1000;7114;PROJETOR;Campos obrigatórios vazios: Responsável
+1001;7115;PROJETOR;Campos obrigatórios vazios: Responsável
+1002;7132;CONTROLADORA;Campos obrigatórios vazios: Responsável
+1003;7133;PC;Campos obrigatórios vazios: Responsável
+1004;7134;PC;Campos obrigatórios vazios: Responsável
+1005;7135;PC;Campos obrigatórios vazios: Responsável
+1006;7136;PC;Campos obrigatórios vazios: Responsável
+1007;7162;MONITOR;Campos obrigatórios vazios: Responsável
+1008;7163;MONITOR;Campos obrigatórios vazios: Responsável
+1009;7164;MONITOR;Campos obrigatórios vazios: Responsável
+1010;7165;MONITOR;Campos obrigatórios vazios: Responsável
+1011;7206;RACK;Campos obrigatórios vazios: Marca, Responsável
+1012;7301;SWITCH;Campos obrigatórios vazios: Responsável
+1013;7302;SWITCH;Campos obrigatórios vazios: Responsável
+1014;7303;SWITCH;Campos obrigatórios vazios: Responsável
+1015;7304;SWITCH;Campos obrigatórios vazios: Responsável
+1016;9433;MONITOR;Campos obrigatórios vazios: Responsável
+1017;9434;MONITOR;Campos obrigatórios vazios: Responsável
+1018;9435;MONITOR;Campos obrigatórios vazios: Responsável
+1019;34;MONITOR;Campos obrigatórios vazios: Responsável
+1020;39;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Local/Setor, Responsável
+1021;41;SWITCH;Campos obrigatórios vazios: Responsável
+1022;42;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1023;55;PC;Campos obrigatórios vazios: Responsável
+1024;56;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Local/Setor, Responsável
+1025;66;MONITOR;Campos obrigatórios vazios: Responsável
+1026;67;PC;Campos obrigatórios vazios: Marca, Responsável
+1027;69;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Local/Setor, Responsável
+1028;72;LEITORA DE CARTÃO;Campos obrigatórios vazios: Responsável
+1029;75;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1030;79;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1031;80;PC;Campos obrigatórios vazios: Local/Setor, Responsável
+1032;81;MONITOR;Campos obrigatórios vazios: Responsável
+1033;88;MONITOR;Campos obrigatórios vazios: Responsável
+1034;89;PC;Campos obrigatórios vazios: Responsável
+1035;129;PC;Campos obrigatórios vazios: Marca, Responsável
+1036;130;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1037;145;PC;Campos obrigatórios vazios: Marca, Responsável
+1038;159;PC;Campos obrigatórios vazios: Marca, Responsável
+1039;161;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1040;195;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1041;197;PC;Campos obrigatórios vazios: Responsável
+1042;201;PC;Campos obrigatórios vazios: Responsável
+1043;205;PC;Campos obrigatórios vazios: Marca, Responsável
+1044;208;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+1045;211;NOTEBOOK;Campos obrigatórios vazios: Responsável
+1046;215;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1047;221;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1048;230;PC;Campos obrigatórios vazios: Marca, Responsável
+1049;262;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1050;263;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1051;281;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1052;283;PC;Campos obrigatórios vazios: Responsável
+1053;450;PC;Campos obrigatórios vazios: Responsável
+1054;451;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1055;452;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1056;593;PC;Campos obrigatórios vazios: Marca, Responsável
+1057;594;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1058;595;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+1059;602;PC;Campos obrigatórios vazios: Marca, Responsável
+1060;604;IMPRESSORA;Campos obrigatórios vazios: Marca, Responsável
+1061;837;PC;Campos obrigatórios vazios: Responsável
+1062;863;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+1063;1041;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+1064;1111;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1065;1112;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1066;1113;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1067;1114;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1068;1115;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1069;1116;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1070;1117;TV;Campos obrigatórios vazios: Responsável
+1071;1125;IMPRESSORA;Campos obrigatórios vazios: Marca, Responsável
+1072;1127;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1073;1129;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1074;1130;MODEM;Campos obrigatórios vazios: Marca, Responsável
+1075;1143;PC;Campos obrigatórios vazios: Responsável
+1076;1144;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1077;1145;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1078;1147;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1079;1148;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1080;1149;PC;Campos obrigatórios vazios: Responsável
+1081;1153;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1082;1155;PC;Campos obrigatórios vazios: Responsável
+1083;1156;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1084;1157;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1085;1158;PC;Campos obrigatórios vazios: Responsável
+1086;1159;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1087;1160;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1088;1161;PC;Campos obrigatórios vazios: Responsável
+1089;1164;PC;Campos obrigatórios vazios: Responsável
+1090;1165;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1091;1166;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1092;1167;PC;Campos obrigatórios vazios: Responsável
+1093;1168;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1094;1169;ESTABILIZADOR;Campos obrigatórios vazios: Responsável
+1095;1170;PC;Campos obrigatórios vazios: Responsável
+1096;1171;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1097;1172;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1098;1173;PC;Campos obrigatórios vazios: Marca, Responsável
+1099;1174;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1100;1176;PC;Campos obrigatórios vazios: Responsável
+1101;1177;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1102;1178;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1103;1180;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1104;1182;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1105;1184;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1106;1186;PC;Campos obrigatórios vazios: Responsável
+1107;1187;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1108;1188;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1109;1191;SWITCH;Campos obrigatórios vazios: Responsável
+1110;1193;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1111;1194;MODEM;Campos obrigatórios vazios: Marca, Responsável
+1112;1196;PC;Campos obrigatórios vazios: Marca, Responsável
+1113;1197;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1114;1201;PROJETOR;Campos obrigatórios vazios: Responsável
+1115;1204;NOBREAK;Campos obrigatórios vazios: Local/Setor, Responsável
+1116;1205;PC;Campos obrigatórios vazios: Marca, Responsável
+1117;1206;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1118;1207;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1119;1208;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1120;1209;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1121;1210;PC;Campos obrigatórios vazios: Responsável
+1122;1250;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1123;1297;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1124;1340;PC;Campos obrigatórios vazios: Responsável
+1125;1341;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1126;1397;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1127;1418;PC;Campos obrigatórios vazios: Responsável
+1128;1578;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1129;1594;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1130;1606;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1131;1607;PC;Campos obrigatórios vazios: Responsável
+1132;1608;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1133;1622;NOTEBOOK;Campos obrigatórios vazios: Responsável
+1134;1624;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1135;1625;NOTEBOOK;Campos obrigatórios vazios: Responsável
+1136;1626;NOTEBOOK;Campos obrigatórios vazios: Responsável
+1137;1627;PROJETOR;Campos obrigatórios vazios: Responsável
+1138;1629;PC;Campos obrigatórios vazios: Responsável
+1139;1630;MONITOR;Campos obrigatórios vazios: Responsável
+1140;1631;PC;Campos obrigatórios vazios: Responsável
+1141;1632;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1142;1633;PC;Campos obrigatórios vazios: Responsável
+1143;1634;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1144;1635;PC;Campos obrigatórios vazios: Responsável
+1145;1636;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1146;1637;PC;Campos obrigatórios vazios: Responsável
+1147;1638;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1148;1640;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1149;1641;PC;Campos obrigatórios vazios: Responsável
+1150;1642;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1151;1643;PC;Campos obrigatórios vazios: Responsável
+1152;1645;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1153;1646;PC;Campos obrigatórios vazios: Responsável
+1154;1648;PC;Campos obrigatórios vazios: Responsável
+1155;1649;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1156;1651;MONITOR;Campos obrigatórios vazios: Responsável
+1157;1652;PC;Campos obrigatórios vazios: Responsável
+1158;1654;PC;Campos obrigatórios vazios: Responsável
+1159;1656;PC;Campos obrigatórios vazios: Responsável
+1160;1657;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1161;1658;PC;Campos obrigatórios vazios: Responsável
+1162;1659;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1163;1660;PC;Campos obrigatórios vazios: Responsável
+1164;1667;PC;Campos obrigatórios vazios: Responsável
+1165;1687;PROJETOR;Campos obrigatórios vazios: Marca, Responsável
+1166;1809;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1167;1810;PC;Campos obrigatórios vazios: Marca, Responsável
+1168;1811;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1169;1813;ESTABILIZADOR;Campos obrigatórios vazios: Marca, Responsável
+1170;1865;IMPRESSORA;Campos obrigatórios vazios: Marca, Responsável
+1171;2113;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1172;2197;MONITOR;Campos obrigatórios vazios: Responsável
+1173;2205;PC;Campos obrigatórios vazios: Responsável
+1174;2206;PC;Campos obrigatórios vazios: Responsável
+1175;2231;PC;Campos obrigatórios vazios: Responsável
+1176;2242;ESTABILIZADOR;Campos obrigatórios vazios: Responsável
+1177;2243;ESTABILIZADOR;Campos obrigatórios vazios: Responsável
+1178;2251;SWITCH;Campos obrigatórios vazios: Marca, Responsável
+1179;2252;PC;Campos obrigatórios vazios: Responsável
+1180;2253;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1181;2254;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1182;2255;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1183;2256;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1184;2257;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1185;2258;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1186;2259;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1187;2260;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1188;2261;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1189;2262;MONITOR;Campos obrigatórios vazios: Marca, Responsável
+1190;2263;PC;Campos obrigatórios vazios: Responsável
+1191;2264;PC;Campos obrigatórios vazios: Responsável
+1192;2265;PC;Campos obrigatórios vazios: Responsável
+1193;2266;PC;Campos obrigatórios vazios: Responsável
+1194;2268;PC;Campos obrigatórios vazios: Responsável
+1195;2269;PC;Campos obrigatórios vazios: Responsável
+1196;2270;PC;Campos obrigatórios vazios: Responsável
+1197;2283;SCANNER;Campos obrigatórios vazios: Responsável
+1198;2299;MONITOR;Campos obrigatórios vazios: Responsável
+1199;2304;PROJETOR;Campos obrigatórios vazios: Responsável
+1200;2307;PC;Campos obrigatórios vazios: Responsável
+1201;2309;PC;Campos obrigatórios vazios: Responsável
+1202;2312;PC;Campos obrigatórios vazios: Responsável
+1203;2323;MONITOR;Campos obrigatórios vazios: Responsável
+1204;2416;NET TOP;Campos obrigatórios vazios: Marca, Responsável
+1205;2417;PC;Campos obrigatórios vazios: Marca, Responsável
+1206;2419;TV;Campos obrigatórios vazios: Responsável
+1207;2422;MONITOR;Campos obrigatórios vazios: Responsável
+1208;2423;PC;Campos obrigatórios vazios: Responsável
+1209;2427;PC;Campos obrigatórios vazios: Responsável
+1210;2428;PC;Campos obrigatórios vazios: Responsável
+1211;2431;PC;Campos obrigatórios vazios: Responsável
+1212;2432;PC;Campos obrigatórios vazios: Responsável
+1213;2433;PC;Campos obrigatórios vazios: Responsável
+1214;2435;PC;Campos obrigatórios vazios: Responsável
+1215;2438;PC;Campos obrigatórios vazios: Responsável
+1216;2442;PC;Campos obrigatórios vazios: Responsável
+1217;2487;TV;Campos obrigatórios vazios: Responsável
+1218;2491;SWITCH;Campos obrigatórios vazios: Responsável
+1219;2499;NOTEBOOK;Campos obrigatórios vazios: Responsável
+1220;2535;PC;Campos obrigatórios vazios: Marca, Responsável
+1221;2563;PC;Campos obrigatórios vazios: Marca, Responsável
+1222;2564;NET TOPS;Campos obrigatórios vazios: Marca, Responsável
+1223;2569;SWITCH;Campos obrigatórios vazios: Responsável
+1224;2631;PC;Campos obrigatórios vazios: Responsável
+1225;2632;PC;Campos obrigatórios vazios: Responsável
+1226;2634;PC;Campos obrigatórios vazios: Responsável
+1227;2636;PC;Campos obrigatórios vazios: Responsável
+1228;2639;PC;Campos obrigatórios vazios: Responsável
+1229;2643;PC;Campos obrigatórios vazios: Responsável
+1230;2644;PC;Campos obrigatórios vazios: Responsável
+1231;2645;PC;Campos obrigatórios vazios: Responsável
+1232;2646;PC;Campos obrigatórios vazios: Responsável
+1233;2666;PC;Campos obrigatórios vazios: Marca, Responsável
+1234;2699;PC;Campos obrigatórios vazios: Responsável
+1235;2804;IMPRESSORA;Campos obrigatórios vazios: Responsável
+1236;2961;PROJETOR;Campos obrigatórios vazios: Responsável
+1237;3102;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+1238;3263;PC;Campos obrigatórios vazios: Responsável
+1239;3414;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+1240;3517;TELA DE PROJEÇÃO;Campos obrigatórios vazios: Marca, Responsável
+1241;4381;TV;Campos obrigatórios vazios: Responsável
+1242;5107;TV BOX;Campos obrigatórios vazios: Marca, Responsável
+1243;5426;MONITOR;Campos obrigatórios vazios: Responsável
+1244;5938;MONITOR;Campos obrigatórios vazios: Responsável
