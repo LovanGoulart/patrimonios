@@ -47,8 +47,8 @@ As capturas são exibidas sem ampliação. Clique em uma imagem para abrir o arq
 
 Dashboard com total de equipamentos, quantidade de ativos, equipamentos em manutenção, baixas e atividades recentes.
 
-<a href="tela%20inicial%282%29.png">
-  <img src="tela%20inicial%282%29.png" alt="Dashboard do Patrimônio Pro" width="249">
+<a href="tela%20inicial.png">
+  <img src="tela%20inicial.png" alt="Dashboard do Patrimônio Pro" width="249">
 </a>
 
 ### Consulta de equipamentos
@@ -63,8 +63,8 @@ Listagem com identificação patrimonial, localização, situação e acesso às
 
 Interface para identificar o equipamento pelo código de barras da etiqueta patrimonial, com alternativa de digitação manual.
 
-<a href="scanear%20c%C3%B3digo%20de%20barras%281%29.png">
-  <img src="scanear%20c%C3%B3digo%20de%20barras%281%29.png" alt="Scanner de código de barras patrimonial" width="247">
+<a href="scanear%20c%C3%B3digo%20de%20barras.png">
+  <img src="scanear%20c%C3%B3digo%20de%20barras.png" alt="Scanner de código de barras patrimonial" width="247">
 </a>
 
 ### Registro de manutenção
